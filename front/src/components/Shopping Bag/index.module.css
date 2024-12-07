@@ -1,0 +1,33 @@
+.text {
+    position: relative;
+    text-decoration: none;
+    color: #1e1e1e;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.text span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+}
+
+.text:hover {
+    color: #ffffff;
+}
+
+.icon {
+    margin-right: 8px;
+} 
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    padding: 6px;
+}

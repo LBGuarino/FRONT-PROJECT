@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <g id="icono_wishlist" transform="translate(10232.013 3927.013)">
+        <rect id="Rectángulo_309" data-name="Rectángulo 309" width="24" height="24" transform="translate(-10232.013 -3927.013)" fill="red" opacity="0"></rect>
+        <g id="__TEMP__SVG__" transform="translate(-10230.732 -3923.996)">
+            <path id="Trazado_12324" data-name="Trazado 12324" d="M13.034,7.074,11.92,5.961a5.633,5.633,0,1,0-7.967,7.967l9.054,9.054,0,0,.027.027,9.054-9.054a5.633,5.633,0,1,0-7.967-7.967L13.034,7.074Zm-.025,13.008,5.056-5.056,1.485-1.434h0L20.642,12.5a3.585,3.585,0,1,0-5.07-5.07L13.035,9.971l-.008-.008h0L10.472,7.41A3.585,3.585,0,1,0,5.4,12.48l2.6,2.6v0l5,5Z" transform="translate(-2.303 -4.311)" fill="#fff" fill-rule="evenodd"></path>
+        </g>
+    </g>
+</svg>
