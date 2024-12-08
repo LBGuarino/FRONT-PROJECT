@@ -11,7 +11,7 @@ export const Card: React.FC<CardProps> = ({ name, description, price, stock, ima
         <div className={styles.card}>
             <img src={image} alt={name} className={styles.image} />
             <div className={styles.cardBody}>
-                <h2>{name}</h2>
+                <h2 className={styles.name}>{name}</h2>
                 <p className={styles.price}>
                     {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(price)}
                 </p>

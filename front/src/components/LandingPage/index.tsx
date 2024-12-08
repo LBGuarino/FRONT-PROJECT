@@ -19,7 +19,6 @@ export default function LandingPage() {
 
   return (
     <Box component="section" className={styles.container}>    
-        <h1>Landing Page</h1>
         <Swiper 
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={30}

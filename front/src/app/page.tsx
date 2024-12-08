@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Box component="header" className={styles.container}>
-        <img src="/images/background.png" alt="background" className={styles.background} />
+        <img src="/images/Untitled.png" alt="background" className={styles.background} />
       </Box>
 
       <LandingPage />
