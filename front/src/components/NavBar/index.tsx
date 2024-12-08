@@ -12,6 +12,7 @@ export const NavBar: React.FC = () => {
     return (
         <nav className={styles.header}>
 
+
             <div className={styles.temporaryDrawer}>
                 <TemporaryDrawer />
             </div>

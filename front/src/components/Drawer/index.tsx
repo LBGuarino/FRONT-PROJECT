@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -6,54 +6,92 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { mainCategories } from './utils';
+import { ListItemText } from '@mui/material';
 
 export default function TemporaryDrawer() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [hoveredCategory, setHoveredCategory] = useState<number | null>(null);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
+  const handleMouseEnter = (categoryId: number) => {
+    setHoveredCategory(categoryId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCategory(null); 
+  };
+
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 430 }} role="presentation">
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+        {mainCategories.map((category) => (
+          <div
+            key={category.id}
+            onMouseEnter={() => handleMouseEnter(category.id)}
+            onMouseLeave={handleMouseLeave} 
+            style={{ marginBottom: '10px', position: 'relative' }} 
+          >
+            {/* Categoría principal */}
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText
+                  primary={category.name}
+                  primaryTypographyProps={{
+                    fontWeight: hoveredCategory === category.id ? 'bold' : 'normal',
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+
+            {/* Subcategorías */}
+            <div
+              style={{
+                maxHeight: hoveredCategory === category.id ? '300px' : '0px', 
+                overflow: 'hidden',
+                transition: 'max-height 0.7s ease-in-out', 
+                backgroundColor: 'white', 
+                zIndex: 1,
+                width: '100%',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', 
+              }}
+            >
+              <List sx={{ pl: 4 }}>
+                {category.subCategories.map((sub) => (
+                  <ListItem key={sub.id} disablePadding>
+                    <ListItemButton
+                      component="a"
+                      href={`/${category.name.toLowerCase()}/${sub.name
+                        .toLowerCase()
+                        .replace(/ /g, '-')}`}
+                    >
+                      <ListItemText primary={sub.name} />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </div>
+          </div>
         ))}
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 
   return (
-    <div>
-      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+    <div style={{display: 'flex', marginRight: '10em', marginLeft: '-5em'}}>
+      <Button style={{backgroundColor: 'transparent', border: 'none', borderRadius: '40px', color: 'white',marginLeft: '1em'}} onClick={toggleDrawer(true)}>
+        <img src="/icons/menuicon.svg" width={30} height={21}/>
+      </Button>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
     </div>
   );
 }
+
+
+

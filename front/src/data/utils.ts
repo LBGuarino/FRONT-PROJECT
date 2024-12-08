@@ -1,13 +1,13 @@
 import { IProduct } from "@/interfaces/IProduct";
 
-export const products: IProduct[] = [
+export const productsArray: IProduct[] = [
 
     {
         id: 1,
         name: "Black Cherry",
         description: "Original Large Jar Scented Candle",
         price: 30,
-        stock: 4,
+        stock: 0,
         image: "https://thecandleshop.com.ar/cdn/shop/files/Luz_Esperanza_-_Foto_fondo_blanco_C.jpg?v=1732562510&width=493",
         categoryId: 1
     },

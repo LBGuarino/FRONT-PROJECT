@@ -1,0 +1,31 @@
+.container {
+    padding: 2rem;
+    background-color: #f1f3f8; /* 11-4101 TCX */
+    color: #5f4b52; /* 16-1523 TCX */
+}
+
+.heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #f4ece2; /* 12-1306 TCX */
+}
+
+.swiperContainer {
+    padding: 2rem 0;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-pagination-bullet {
+    background-color: #5f4b52 !important; /* 16-1523 TCX */
+    opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #f4ece2 !important; /* 12-1306 TCX */
+}
