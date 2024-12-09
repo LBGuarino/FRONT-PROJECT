@@ -1,9 +1,10 @@
 "use client"
-
-import { Card } from "@/components/Card";
 import React, { useEffect, useState } from "react";
 import { IProduct } from "@/interfaces/IProduct";
 import { getProducts } from "@/helpers/getProducts";
+import { ProductCard } from "@/components/ProductPageCard";
+import styles from './index.module.css';
+import BasicBreadcrumbs from "@/components/Breadcrumbs";
 
 export const ProductsPage: React.FC = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -20,11 +21,13 @@ export const ProductsPage: React.FC = () => {
   
     return (
         <>
-            <div>
-                <h1>Products</h1>
-                <div>
-                    {products.map(({name, description, price, stock, image, categoryId}, index: number) => (
-                        <Card
+
+            <div className={styles.breadcrumbs}>            
+              <BasicBreadcrumbs />
+            </div>
+            <div className={styles.cardsContainer}>
+              {products.map(({name, description, price, stock, image, categoryId}, index: number) => (
+                        <ProductCard
                         key={index}
                         name={name}
                         description={description}
@@ -34,7 +37,6 @@ export const ProductsPage: React.FC = () => {
                         categoryId={categoryId}
                         />
                     ))}
-                </div>
             </div>
         </>
     )

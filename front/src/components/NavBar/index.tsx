@@ -17,6 +17,14 @@ export const NavBar: React.FC = () => {
                 <TemporaryDrawer />
             </div>
 
+
+            
+            <div className={styles.logoContainer}>
+                <a href='/'>
+                    <img src='/images/logo.svg' alt="logo" className={styles.logo} />
+                </a>
+            </div>
+
             <div className={styles.searchBar}>
                 <CustomSearchBar />
             </div>

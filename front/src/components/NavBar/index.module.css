@@ -81,18 +81,38 @@
 }
 
 .searchBar {
-    display: flex;
+    display: block;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-left: 17em;
-    margin-right: 0;
+    width: fit-content;
+    margin-right: -4em;
 }
 
 .temporaryDrawer {
-    display: flex;
+    display: block;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-left: auto;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    margin-right: 8em;
 }

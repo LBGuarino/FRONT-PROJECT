@@ -1,6 +1,7 @@
 export interface mainCategories {
     id: number,
-    name: string
+    name: string,
+    path: string,
     subCategories: subCategories[]
 }
 
@@ -13,6 +14,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 1,
         name: 'Candles',
+        path: '/products',
         subCategories: [
             {
                 id: 1,
@@ -35,6 +37,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 2,
         name: 'Scented Oils',
+        path: '',
         subCategories: [
             {
                 id: 1,
@@ -53,6 +56,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 3,
         name: 'Diffusers',
+        path: '',
         subCategories: [
             {
                 id: 1,
@@ -71,6 +75,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 4,
         name: 'Perfumes',
+        path: '',
         subCategories: [
             {
                 id: 1,

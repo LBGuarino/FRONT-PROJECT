@@ -1,0 +1,52 @@
+.addToCart {
+    background-color: #5f4b52; /* 16-1523 TCX */
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 1em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addToCart:hover {
+    background-color: #7a5d64;
+}
+
+.outOfStock {
+    background-color: #d9d9d9;
+    color: #888888;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 1em;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+
+.share {
+    color: #5f4b52;
+    transition: color 0.3s ease;
+}
+
+.share:hover {
+    color: #20181a;
+}
+
+.name {
+    color: #5f4b52;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.description {
+    color: #5f4b52;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
