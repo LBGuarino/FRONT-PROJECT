@@ -1,3 +1,5 @@
+import styles from './index.module.css';
+
 export default function FormInput({
     name,
     label, 
@@ -14,14 +16,14 @@ export default function FormInput({
     placeholder: string
 }) {
   return (
-    <div>
-        <label htmlFor={name}>{label}</label>
+    <div className='flex flex-col'>
+        <label className={styles.label} htmlFor={name}>{label}</label>
         <input
+          className={styles.input}
           type={type}
           name={name}
           value={value}
           onChange={onChange}
-          className=''
           placeholder={placeholder}
         />
     </div>

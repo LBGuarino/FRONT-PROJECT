@@ -5,11 +5,16 @@ export default function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div>
-        Este es mi layout de autenticacion
-        {children}
-    </div>
 
+  return (
+      <div className="flex flex-row bg-transparent h-screen">
+        <div className='w-1/2 h-full'>
+          <img src='/images/authLayout.png' alt="logo" className='w-full h-full object-cover' />
+        </div>
+
+        <div className='flex flex-col items-center p-16 align-center justify-center w-1/2 h-full'>
+          {children}
+        </div>
+      </div>
   );
 }
