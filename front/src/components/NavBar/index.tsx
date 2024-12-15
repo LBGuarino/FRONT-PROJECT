@@ -1,5 +1,3 @@
-"use client";
-
 import Link from 'next/link';
 import styles from './index.module.css';
 import { NavConfig, NavItem } from '@/config/navConfig';
@@ -7,8 +5,9 @@ import Image from 'next/image';
 import ShoppingBag from '../Shopping Bag';
 import CustomSearchBar from '../SearchBar';
 import TemporaryDrawer from '../Drawer';
+import ClientNavActions from '../ClientNavActions';
 
-export const NavBar: React.FC = () => {
+export default function NavBar(){
     return (
         <nav className={styles.header}>
 
@@ -52,9 +51,13 @@ export const NavBar: React.FC = () => {
                 <li className={styles.navigationPill}>
                     <ShoppingBag />
                 </li>
+
+                <li className={styles.navigationPill}>
+                    <ClientNavActions />
+                </li>
+
             </ul>
         </nav>
     );
 };
 
-export default NavBar;

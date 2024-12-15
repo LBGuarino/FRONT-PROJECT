@@ -1,19 +1,13 @@
 "use client";
+import axios from 'axios';  
 import { useState } from 'react';
 import FormInput from '../FormInput';
-import { signupConfig } from '@/config/signupConfig';
+import { initialValues, signupConfig } from '@/config/signupConfig';
 import styles from './index.module.css';
 import Link from 'next/link';
 
 export default function SignUpForm() {
-    const [form, setForm] = useState({
-        name: '',
-        email: '',
-        address: '',
-        phone: '',
-        password: '',
-        confirmPassword: '',
-    }); 
+    const [form, setForm] = useState(initialValues); 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const property = e.target.name;
@@ -21,10 +15,21 @@ export default function SignUpForm() {
         setForm({ ...form, [property]: value });
     };
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, form)
+        .then((res) => {
+            console.log(res.data);
+        })
+        .catch((error) => {
+            console.log(error.response.data);
+        });
+        setForm(initialValues);
+    }
+
     return (
         <div className={styles.container}> 
-            <div className={styles.animatedBorder}>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={handleSubmit}>
                         {signupConfig.map(({ name, label, type, placeholder }) => {
                             return (
                             <FormInput
@@ -43,10 +48,11 @@ export default function SignUpForm() {
                         Already have an account ? <Link href='./login' className="p-1 text-blue-500 hover:underline">Log In</Link>
                         </p>
 
-                        <button className={styles.button}>Sign Up</button>
+                        <button className={styles.button} type="submit">
+                            Sign Up
+                        </button>
 
                 </form>
-            </div>
-        </div> 
+        </div>
     );
 };  

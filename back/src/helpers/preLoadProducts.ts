@@ -13,65 +13,71 @@ interface IProduct {
 
 const productsToPreLoad: IProduct[] = [
   {
-    name: "iPhone 11",
-    price: 699,
+    name: "Black Cherry",
+    price: 17,
     description:
-      "Experience power and elegance with the iPhone 11: capture stunning moments with its dual-camera system, enjoy exceptional performance, and immerse yourself in a brilliant Liquid Retina display. Discover a world of possibilities in the palm of your hand!",
+      "Original Large Jar Scented Candle",
     image:
-      "https://www.apple.com/v/iphone-11/a/images/meta/og__f2j3dwkzna2u.png",
+      "https://thecandleshop.com.ar/cdn/shop/files/Luz_Esperanza_-_Foto_fondo_blanco_C.jpg?v=1732562510&width=493",
     categoryId: 1,
     stock: 10,
   },
   {
-    name: "MacBook Air",
-    price: 999,
-    description:
-      "Embrace efficiency and sophistication with the MacBook Air: lightweight design meets powerful performance, stunning Retina display brings your work to life, and all-day battery life keeps you productive wherever you go. Elevate your computing experience with the MacBook Air.",
-    image:
-      "https://www.apple.com/v/macbook-air/a/images/meta/og__d5k62k8b4qka.png",
-    categoryId: 2,
+    name: "Midnight Jasmine",
+    description: "Original Large Jar Scented Candle",
+    price: 30,
+    stock: 4,
+    image: "https://thecandleshop.com.ar/cdn/shop/files/A24V_VELAAROMATICAQUEENIIVAINILLA_a.jpg?v=1690202796&width=493",
+    categoryId: 3
+},
+  {
+    name: "Mulberry",
+    description: "Signature Large Jar Scented candle",
+    price: 30,
+    stock: 20,
+    image: "https://thecandleshop.com.ar/cdn/shop/files/VelaGreyM_a_9b1ad9b4-fb10-46a4-9d7d-92317af4db4a.jpg?v=1699316292&width=1100",
+    categoryId: 2
+},
+  {
+    name: "Christmas Eve",
+    description: "Signature Large Jar Scented candle",
+    price: 25,
+    stock: 30,
+    image: "https://thecandleshop.com.ar/cdn/shop/products/A09Z_20__20VELA_20AROMATICA_20VOTIVA_20MANZANA_20CANELA.jpg?v=1686140849&width=1100",
+    categoryId: 5
+},
+  {
+    name: "Smoked Vanilla",
+    description: "Original Small Scented candle",
+    price: 17,
     stock: 10,
+    image: "https://thecandleshop.com.ar/cdn/shop/products/A05CV_20__20VELA_20AROMATICA_2010X10_20CEDRO_20VERBENA.jpg?v=1686140434&width=1100",
+    categoryId: 5
+},
+  {
+    name: "Munich Christmas Market",
+    description: "Original Medium Scented candle",
+    price: 23,
+    stock: 9,
+    image: "https://thecandleshop.com.ar/cdn/shop/products/A03Z_20__20VELA_20AROMATICA_206X10_20MANZANA_20CANELA.jpg?v=1686140506&width=493",
+    categoryId: 2
+},
+  {
+    name: "London Christmas Tea",
+    description: "Original Small Scented candle",
+    price: 18,
+    stock: 7,
+    image: "https://thecandleshop.com.ar/cdn/shop/products/A03MV_20__20VELA_20AROMATICA_206X10_20MAGNOLIA_20VAINILLA.jpg?v=1686140499&width=493",
+    categoryId: 1
   },
   {
-    name: "iPad Pro",
-    price: 799,
-    description:
-      "Unleash your creativity and productivity with the iPad Pro: powerful performance, stunning Liquid Retina display, and all-day battery life make the iPad Pro the perfect tool for work and play. Transform your ideas into reality with the iPad Pro.",
-    image:
-      "https://www.apple.com/v/ipad-pro/a/images/meta/og__d8m6x7smkntm.png",
-    categoryId: 3,
-    stock: 10,
-  },
-  {
-    name: "Apple Watch Series 6",
-    price: 399,
-    description:
-      "Stay connected and healthy with the Apple Watch Series 6: track your workouts, monitor your health, and stay in touch with the people and information you care about most. Experience the future of health and wellness with the Apple Watch Series 6.",
-    image:
-      "https://www.apple.com/v/apple-watch-series-6/a/images/meta/og__c1zv8c8n7q06.png",
-    categoryId: 4,
-    stock: 10,
-  },
-  {
-    name: "AirPods Pro",
-    price: 249,
-    description:
-      "Immerse yourself in sound with the AirPods Pro: active noise cancellation, transparency mode, and customizable fit make the AirPods Pro the perfect companion for music, calls, and everything in between. Elevate your audio experience with the AirPods Pro.",
-    image:
-      "https://www.apple.com/v/airpods-pro/a/images/meta/og__c1zv8c8n7q06.png",
-    categoryId: 5,
-    stock: 10,
-  },
-  {
-    name: "HomePod mini",
-    price: 99,
-    description:
-      "Elevate your home audio experience with the HomePod mini: immersive sound, intelligent assistant, and smart home hub make the HomePod mini the perfect addition to your home. Enjoy a world of music, news, and more with the HomePod mini.",
-    image:
-      "https://www.apple.com/v/homepod-mini/a/images/meta/og__d5k62k8b4qka.png",
-    categoryId: 6,
-    stock: 10,
-  },
+    name: "A Calm & Quiet Place",
+    description: "Signature Small Scented candle",
+    price: 20,
+    stock: 20,
+    image: "https://thecandleshop.com.ar/cdn/shop/products/A03G_20__20VELA_20AROMATICA_206X10_20GARDENIA.jpg?v=1686140484&width=493",
+    categoryId: 3
+}
 ];
 
 export const preLoadProducts = async () => {

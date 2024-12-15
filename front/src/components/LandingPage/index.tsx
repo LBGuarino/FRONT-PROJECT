@@ -1,6 +1,6 @@
+'use client';
 import { useEffect, useState } from "react";
 import { Card } from "../Card";
-import { productsArray } from "@/data/utils";
 import { IProduct } from "@/interfaces/IProduct";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -9,12 +9,19 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import styles from "./index.module.css";
 import { Box } from "@mui/material";
+import { getProducts } from "@/helpers/getProducts";
 
 export default function LandingPage() {
     const [products, setProducts] = useState<IProduct[]>([]);
 
     useEffect(() => {
-      setProducts(productsArray);
+      getProducts()
+      .then((res) => {
+        setProducts(res);
+      })
+      .catch((error) => {
+        alert(error.message)
+      })
     }, []);
 
   return (

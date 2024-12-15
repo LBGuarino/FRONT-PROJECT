@@ -12,3 +12,8 @@ export const loginConfig = [
         placeholder: 'Enter your password',
     },
 ];
+
+export const initialLoginValues = {
+    email: '',
+    password: ''
+};

@@ -6,11 +6,6 @@ export interface NavItem {
 
 export const NavConfig: NavItem[] = [
     {
-        text: 'Log In',
-        path: 'auth/login',
-        icon: '/icons/user.svg'
-    },
-    {
         text: 'contact us',
         path: 'contact',
         icon: '/icons/contact.svg'

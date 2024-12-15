@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -39,7 +40,7 @@ export default function TemporaryDrawer() {
             onMouseLeave={handleMouseLeave} 
             style={{ marginBottom: '10px', position: 'relative' }}
           >
-            {/* Categoría principal */}
+
             <ListItem 
             className={styles.mainCategory}
             sx={{
@@ -60,7 +61,7 @@ export default function TemporaryDrawer() {
               </ListItemButton>
             </ListItem>
 
-            {/* Subcategorías */}
+
             <div
               style={{
                 maxHeight: hoveredCategory === category.id ? '300px' : '0px', 

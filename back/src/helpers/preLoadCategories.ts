@@ -7,14 +7,14 @@ interface ICategory {
 }
 
 const categoriesToPreLoad: ICategory[] = [
-    { name: 'Smartphones' },
-    { name: 'Laptops' },
-    { name: 'Tablets' },
-    { name: 'Headphones' },
-    { name: 'Cameras' },
-    { name: 'Printers' },
-    { name: 'Monitors' },
-    { name: 'Storage' },
+    { name: 'Candles' },
+    { name: 'Scented Candles' },
+    { name: 'Scented Oilsaa' },
+    { name: 'Diffusers' },
+    { name: 'Parfumes' },
+    { name: 'Candle Holders' },
+    { name: 'Fragrances' },
+    { name: 'Soaps' },
     { name: 'Accessories' }
 ];
 

@@ -1,4 +1,3 @@
-"use client";
 import LandingPage from "@/components/LandingPage";
 import styles from "./index.module.css";
 import { Box } from "@mui/material";
