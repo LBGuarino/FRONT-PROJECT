@@ -18,13 +18,13 @@ export default function RootLayout({
         <title>The Scented Shop</title>
         <link rel="icon" href="Favicon.ico" />
       </head>
-      <body>
       <UserProvider>
+        <body>
             <NavBar />
             <main>{children}</main>
             <Footer />
-        </UserProvider>
-      </body>
+        </body>
+      </UserProvider>
 
     </html>
   );

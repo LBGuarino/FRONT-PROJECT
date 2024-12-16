@@ -17,50 +17,52 @@ export default function ProfileForm() {
 
     return (
         <>
-            {error && <Alert/>}
-                <form className="flex flex-col justify-between">
-                    <label className={styles.label}>
-                    Name:
-                    </label> 
-                    <input 
-                    className={styles.input}
-                    type="text" 
-                    value={user?.name || undefined} 
-                    readOnly/>    
+            {isLoading && <p>Loading...</p>}
+            {error && <Alert />}
+            {user &&
+                <ul className="flex flex-col justify-between">
+                    <img src={user?.picture || undefined} alt="profile picture" className=" w-1/2 h-1/2 object-cover rounded-full ml-auto mr-auto mt-4 mb-2" />
 
-                    <label className={styles.label}>
-                        Email:
-                    </label> 
-                    <input 
-                    className={styles.input} 
-                    type="text" 
-                    value={user?.email || undefined} 
-                    readOnly/>    
-                    
-                    <label className={styles.label}>
-                        Last Update:
-                    </label> 
-                    <input 
-                    className={styles.input} 
-                    type="text" 
-                    value={user?.updated_at || undefined} 
-                    readOnly/>
-                </form>
+                    <li>
+                        <p className={styles.label}>
+                            Name:
+                        </p>
+                        {user?.name && <p className={styles.input}>{user?.name}</p>}
+                    </li>
 
-                {signupConfig.map(({ name, label, type, placeholder }) => {
-                    return (
-                    <FormInput
-                        key={name}
-                        name={name}
-                        label={label}
-                        type={type}
-                        value={form[name as keyof typeof form]}
-                        onChange={handleChange}
-                        placeholder={placeholder}
-                    />
+                    <li>
+                        <p className={styles.label}>
+                            Email:
+                        </p>
+                        {user?.email && <p className={styles.input}>{user?.email}</p>}
+                    </li>
+
+                    <li>
+                        <p className={styles.label}>
+                            Last Update:
+                        </p>
+                        {user?.updated_at && <p className={styles.input}>{user?.updated_at}</p>}
+                    </li>
+                </ul>
+            }
+
+            {user &&
+                <>
+                    {signupConfig.map(({ name, label, type, placeholder }) => {
+                        return (
+                            <FormInput
+                                key={name}
+                                name={name}
+                                label={label}
+                                type={type}
+                                value={form[name as keyof typeof form]}
+                                onChange={handleChange}
+                                placeholder={placeholder}
+                            />
                         );
-                })}
-
+                    })}
+                </>
+            }
         </>
     );
 }
