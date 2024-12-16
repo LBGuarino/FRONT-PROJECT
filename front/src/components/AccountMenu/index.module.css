@@ -1,0 +1,133 @@
+.mainCategory {
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.mainCategory:hover {
+    background-color:#d8c8bb;
+}
+
+.mainCategoryText {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.1em;
+    text-decoration: none; 
+    position: relative; 
+    display: inline-block; 
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.mainCategoryText:hover {
+    color: #f1ecec;
+}
+
+.mainCategoryText::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; 
+    width: 0%; 
+    height: 2px; 
+    background-color: #f1ecec;
+    transition: width 0.3s ease-in-out; 
+}
+
+.mainCategoryText:hover::after {
+    width: 100%;
+}
+
+.subCategoryText {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    position: relative; 
+    display: inline-block; 
+    cursor: pointer; 
+}
+
+.subCategoryText::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; 
+    width: 0%; 
+    height: 2px; 
+    background-color: #5a5a5a;
+    transition: width 0.3s ease-in-out; 
+}
+
+.subCategoryText:hover::after {
+    width: 100%; 
+}
+
+
+.subCategoryButton {
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.subCategoryButton:hover {
+    background-color:#d8c8bb;
+    text-decoration: underline;
+}
+
+.text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.1em;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; 
+    width: 0%; 
+    height: 2px; 
+    background-color: #f1ecec;
+    transition: width 0.3s ease-in-out; 
+}
+
+.logoutText {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer; 
+    padding: 1em;
+}
+
+.logoutButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.logoutText::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; 
+    width: 0%; 
+    height: 2px; 
+    background-color: #5a5a5a;
+    transition: width 0.3s ease-in-out; 
+}
+
+.logoutText:hover::after {
+    width: 100%; 
+}
+
+
+

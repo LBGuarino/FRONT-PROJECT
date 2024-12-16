@@ -1,24 +1,27 @@
 "use client";
-import styles from './index.module.css';
-import { Avatar } from '@mui/material';    
-import AccountMenu from '../AccountMenu/AccountMenu';
+import { Alert } from '@mui/material';
+import AccountMenu from '../AccountMenu';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 
 export default function ClientNavActions() {
     const { user, error, isLoading } = useUser();
-    {error && <p> Error: {error.message} </p>}
-
-return (
-    <div className="flex flex-row justify-center">
-
-        {user ?
-        <div>
+    
+    return (
+    <>  
+    {error && <Alert severity="error"> Error: {error.message} </Alert>}
+        <div className="flex flex-row justify-center">
+            {user ?
+            <div>
             <AccountMenu />
-        </div> :
-            <a href="/api/auth/login" className="inline-flex font-normal uppercase mb-1 text-yellow-950 transition duration-150 ease-in-out  hover:text-white"> Login </a>}
-
-
-    </div>
+            </div> :
+            <div className="flex flex-row">
+                <a href="/api/auth/login" className="inline-flex font-normal gap-2 uppercase mb-1 text-yellow-950 transition duration-150 ease-in-out hover:text-white">
+                    <img src="/icons/user.svg" width={16} height={16}/> Login
+                </a>
+            </div>
+            }
+        </div>
+    </> 
     )
 }   
