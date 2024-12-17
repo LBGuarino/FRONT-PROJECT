@@ -9,7 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import { CardProps } from './types';
 import styles from './index.module.css'
 
-export const ProductCard: React.FC<CardProps> = ({ name, description, price, stock, image, categoryId }) => {
+export const ProductCard: React.FC<CardProps> = ({ name, description, price, stock, image, category }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea sx={{ display:'flex', flexDirection:'column', justifyContent:'center' }}>

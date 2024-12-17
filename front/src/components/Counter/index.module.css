@@ -1,0 +1,33 @@
+.productCounter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: "Arial", sans-serif;
+    color: #333;
+  }
+  
+  .counterButton {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    color: #333;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .counterButton:hover {
+    background-color: #f8f8f8;
+    border-color: #aaa;
+  }
+  
+  .counterValue {
+    font-size: 18px;
+    font-weight: 600;
+    min-width: 30px;
+    text-align: center;
+  }
+  

@@ -14,7 +14,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 1,
         name: 'Candles',
-        path: '/products',
+        path: '/products/&candles',
         subCategories: [
             {
                 id: 1,
@@ -37,7 +37,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 2,
         name: 'Scented Oils',
-        path: '',
+        path: 'products/&scented-oils',
         subCategories: [
             {
                 id: 1,
@@ -56,7 +56,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 3,
         name: 'Diffusers',
-        path: '',
+        path: 'products/&diffusers',
         subCategories: [
             {
                 id: 1,
@@ -75,7 +75,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 4,
         name: 'Perfumes',
-        path: '',
+        path: 'products/&perfumes',
         subCategories: [
             {
                 id: 1,

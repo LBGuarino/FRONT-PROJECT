@@ -7,6 +7,8 @@
     //   "image": "https://www.apple.com/v/iphone-11/a/images/meta/og__f2j3dwkzna2u.png",
     //   "categoryId": 1
 
+import { ICategory } from "./ICategory";
+
 export interface IProduct {
     id: number,
     name: string,
@@ -14,5 +16,5 @@ export interface IProduct {
     price: number,
     stock: number,
     image: string,
-    categoryId: number  
+    category: ICategory  
 }
