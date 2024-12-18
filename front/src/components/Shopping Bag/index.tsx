@@ -17,7 +17,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 export default function ShoppingBag() {
   return (
     <>
-        <Link href="/cart" className={styles.text}>
+        <Link href="/shopping&bag" className={styles.text}>
             <span>
                 <StyledBadge badgeContent={2} color="secondary">
                 <img src="/icons/shopbag.svg" width={22} height={22}/> 

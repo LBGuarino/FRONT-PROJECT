@@ -1,3 +1,4 @@
+import AnimatedPage from "@/components/AnimatedPage";
 import AutoGrid from "@/components/Product";
 import { IProduct } from "@/interfaces/IProduct";
 import { Breadcrumbs, Divider } from "@mui/material";
@@ -23,19 +24,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ margin: '1rem' }}>
-        <li>
+  <>
+    <Breadcrumbs aria-label="breadcrumb" sx={{ margin: '1rem' }}>
           <a href="/">Home</a>
-        </li>
-        <li>
           <a href="/products">Products</a>
-        </li>
-        <li>
           <a href={`/products/&${product.category.name.toLowerCase()}`}>{product.category.name}</a>
-        </li>
       </Breadcrumbs>
 
+    <AnimatedPage>
       <Divider />
 
       <AutoGrid
@@ -47,7 +43,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
         category={product.category}
       />
     
-    </>
+    </AnimatedPage>
+  </>
   );
 }
 

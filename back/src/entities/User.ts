@@ -12,21 +12,28 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ unique : true, nullable: false })
+    auth0Sub: string;
+
     @Column({
-        nullable: false
+        nullable: true
     })
     name: string;
 
     @Column({
         unique: true,
-        nullable: false
+        nullable: true
     })
     email: string;
 
-    @Column()
+    @Column({
+        nullable: true
+    })
     address: string;
 
-    @Column()
+    @Column({
+        nullable: true  
+    })
     phone: string;
 
     @Column({
@@ -36,7 +43,7 @@ export class User {
     })
     role: Role;
 
-    @OneToOne(() => Credential)
+    @OneToOne(() => Credential, {nullable: true})
     @JoinColumn()
     credential: Credential;
 

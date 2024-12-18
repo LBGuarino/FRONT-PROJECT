@@ -82,7 +82,7 @@
 }
 
 .searchBar {
-    display: block;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -91,11 +91,11 @@
 }
 
 .temporaryDrawer {
-    display: block;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
+    margin-left: 3rem;
 }
 
 .logo {
