@@ -2,48 +2,21 @@
 import Grid from '@mui/material/Grid2';
 import { CardProps } from '../ProductPageCard/types';
 import ProductCounter from '../Counter';
-import AddToCartButton from '../AddToCartButton';
-import axios from 'axios';
-import { use, useEffect, useState } from 'react';
 import { IconButton } from '@mui/material'; 
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { IProduct } from '@/interfaces/IProduct';
-import getToken from '@/helpers/getToken';
+import { useCart } from '../hooks';
 
 
 export const AutoGrid : React.FC<CardProps> = ({ name, description, price, stock, image, category}) => {
-  const [productsInBag, setProductsInBag] = useState<IProduct[]>([]);
+const { addToCart } = useCart();
 
     const handleAddToCart = (product: IProduct) => {
-      setProductsInBag((prev) => {
-        const exists = prev.find((p) => p.name === product.name);
-        if (exists) return prev;
-        return [...prev, product];
-    });
-    }
-
-    useEffect(() => {
-      if (productsInBag.length === 0) return;
-    
-      const sendOrder = async () => {
-        try {
-          const token = await getToken();
-          const response = await axios.post('http://localhost:3001/orders', {
-            products: productsInBag.map((product) => product.id)},
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-        )
-          console.log(response.data);
-        } catch (error) {
-          console.error("Error sending order:", error);
+        if (product.stock === 0) {
+          return  alert('Out of stock');
         }
-      };
-    
-      sendOrder();
-    }, [productsInBag]);
+        addToCart(product);
+      }
 
   return (
     <>
@@ -66,6 +39,7 @@ export const AutoGrid : React.FC<CardProps> = ({ name, description, price, stock
                 quo deleniti laborum!</p>
               <p className="mb-4">Category: {category.name || 'Uncategorized'}</p>  
             </div>
+          
 
             <div className="flex justify-center gap-4 mt-4">
               <ProductCounter />
@@ -78,10 +52,8 @@ export const AutoGrid : React.FC<CardProps> = ({ name, description, price, stock
 
             </div>
         </Grid>
-      </Grid>  
-
+      </Grid>
     </>
-
   );
 }
 

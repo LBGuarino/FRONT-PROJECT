@@ -1,48 +1,19 @@
 'use client';
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
-import styles from "./index.module.css";
-import { useEffect, useState } from "react";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { IProduct } from "@/interfaces/IProduct";
-import getToken from "@/helpers/getToken";
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
+import { useCart } from "../hooks";
 
 
 export default function ShoppingBagProductCard() {
-
-    const [products, setProducts] = useState<IProduct[]>([]);
-    const { user, error, isLoading } = useUser();
-
-    useEffect(() => {
-            const fetchOrders = async () => {
-              try {
-                  const token = await getToken();
-                  const ordersResponse = await fetch("http://localhost:3001/users/orders", {
-                    method: "GET",
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                      "Content-Type": "application/json",
-                    },
-                  });
-        
-                  if (!ordersResponse.ok) {
-                    throw new Error("Failed to fetch orders");
-                  }
-        
-                  const data = await ordersResponse.json();
-                  setProducts(data);
-                }
-                catch (err) {
-                console.error("Error fetching orders:", err);
-              }
-            };
-        
-            fetchOrders();
-          }, [user]);
-
-    return (
-        <>
-        {products.map((product: IProduct) => (
-          <Card key={product.id} sx={{ maxWidth: 345 }}>
+  const { productsInBag } = useCart();
+    
+  return (
+    <>
+      {productsInBag.length === 0 ? (
+        <p>Your bag is empty</p>
+          ) : (
+          <>
+          {productsInBag.map((product) => (
+            <Card key={product.id} sx={{ maxWidth: 345 }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -64,10 +35,10 @@ export default function ShoppingBagProductCard() {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <Button>{product.stock > 0 ? "Add to Cart" : "Out of Stock"}</Button>
-          </Card>
-        ))}
+            </Card>
+            ))}
+          </>
+        )}
       </>
     );
-  }
-
+}
