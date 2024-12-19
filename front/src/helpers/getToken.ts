@@ -1,4 +1,4 @@
-const getToken = async () => {
+const getToken = async (): Promise<string | null> => {
     try {
           const response = await fetch("/api/getToken", {
             method: "POST",

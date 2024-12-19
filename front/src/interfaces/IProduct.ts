@@ -10,7 +10,7 @@
 import { ICategory } from "./ICategory";
 
 export interface IProduct {
-    id: number,
+    id:number,
     name: string,
     description: string,
     price: number,

@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 import { CardProps } from "./types";
 
 
-export const Card: React.FC<CardProps> = ({ name, description, price, stock, image, categoryId }) => {
+export const Card: React.FC<CardProps> = ({ name, description, price, stock, image, category }) => {
     return (
         <div className={styles.card}>
             <img src={image} alt={name} className={styles.image} />

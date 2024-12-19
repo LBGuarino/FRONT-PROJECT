@@ -3,6 +3,7 @@ import { Order } from "../entities/Order";
 import { OrderRepository } from "../repositories/order.repository";
 import { ProductRepository } from "../repositories/product.repository";
 import { UserRepository } from "../repositories/user.repository";
+import { OrderStatus } from "../entities/Order";  
 
 export const createOrderService = async (
   createOrderDto: CreateOrderDto
@@ -20,7 +21,7 @@ export const createOrderService = async (
 
   const newOrder = OrderRepository.create();
 
-  newOrder.status = "approved";
+  newOrder.status = OrderStatus.APPROVED;
   newOrder.date = new Date();
   newOrder.user = userF;
   newOrder.products = productsF;

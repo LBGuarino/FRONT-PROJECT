@@ -10,17 +10,28 @@ import {
 import { User } from "./User";
 import { Product } from "./Product";
 
-// status: pending, approved, rejected
+export enum OrderStatus {
+  PENDING = "pending",
+  APPROVED = "approved",
+  REJECTED = "rejected",
+}
 
 @Entity({ name: "orders" })
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  status: string;
+  @Column({
+    type: "enum",
+    enum: OrderStatus,
+    default: OrderStatus.PENDING,
+  })
+  status: OrderStatus;
 
-  @Column()
+  @Column({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP",
+  })
   date: Date;
 
   @ManyToOne(() => User, (user) => user.orders)
