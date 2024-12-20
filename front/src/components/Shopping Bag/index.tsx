@@ -5,6 +5,8 @@ import { styled } from '@mui/material/styles';
 import styles from './index.module.css';
 import Link from 'next/link';
 import { useCart } from '../hooks';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { Alert } from '@mui/material';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -17,10 +19,14 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 
 
 export default function ShoppingBag() {
+  const { user, error, isLoading } = useUser();
   const { productsInBag } = useCart();
   const totalItems = productsInBag.reduce((sum, product) => sum + product.quantity, 0);
+  
   return (
-    <>
+    <>  
+    {error && <Alert severity="error"> Error: {error.message} </Alert>}
+    {user ?
         <Link href="/shopping&bag" className={styles.text}>
             <span>
                 <StyledBadge badgeContent={totalItems} color="secondary">
@@ -28,7 +34,7 @@ export default function ShoppingBag() {
                 </StyledBadge>
                 Shopping Bag
             </span>
-        </Link>
+        </Link> : null}
     </>
   );
 }

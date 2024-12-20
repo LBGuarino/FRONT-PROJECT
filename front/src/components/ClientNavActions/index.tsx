@@ -5,7 +5,7 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 
 
 export default function ClientNavActions() {
-    const { user, error, isLoading } = useUser();
+    const { user, error } = useUser();
     
     return (
     <>  

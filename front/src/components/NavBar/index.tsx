@@ -47,7 +47,6 @@ export default function NavBar(){
                         </li>
                     );
                 })}
-
                 <li className={styles.navigationPill}>
                     <ShoppingBag />
                 </li>

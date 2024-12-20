@@ -15,7 +15,7 @@ export const useCart = () => {
       const existingProduct = prev.find((p) => p.id === product.id);
 
       if (existingProduct && existingProduct.quantity >= product.stock) {
-        alert('No hay suficiente stock disponible');
+        alert('There are no more items in stock');
         return prev;
       }
 
@@ -23,7 +23,7 @@ export const useCart = () => {
         ? prev.map((p) =>
             p.id === product.id ? { ...p, quantity: (p.quantity || 1) + 1 } : p
           )
-        : [...prev, { ...product, quantity: 1 }]; // Añade quantity al producto
+        : [...prev, { ...product, quantity: 1 }];
       localStorage.setItem('productsInBag', JSON.stringify(updatedCart));
       return updatedCart;
     });
