@@ -18,6 +18,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       throw new Error(`Failed to fetch product: ${response.statusText}`);
     }
     product = await response.json();
+    console.log(product)
   } catch (error) {
     console.error("Error fetching product:", error);
     return <div>Producto no encontrado.</div>;
@@ -35,6 +36,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <Divider />
 
       <AutoGrid
+        id={product.id}
         name={product.name}
         description={product.description}
         price={product.price}

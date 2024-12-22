@@ -10,7 +10,7 @@ import { useCart } from '../hooks';
 import { useState } from 'react';
 import { TransitionProps } from '@mui/material/transitions';
 
-export const AutoGrid: React.FC<CardProps> = ({ name, description, price, stock, image, category }) => {
+export const AutoGrid: React.FC<CardProps> = ({ id, name, description, price, stock, image, category }) => {
   const { addToCart } = useCart();
   const [state, setState] = useState<{
     open: boolean;
@@ -34,14 +34,10 @@ export const AutoGrid: React.FC<CardProps> = ({ name, description, price, stock,
     setState({ ...state, open: false });
   };
 
-  const handleAddToCart = (product: IProduct) => {
-    if (product.stock !== 0) {
-      addToCart(product);
+  const handleAddToCart = (productId: number) => {
+      addToCart(productId);
       handleClick({ vertical: 'top', horizontal: 'right' });
-    } else {
-      alert('Out of stock');
     }
-  };
 
   return (
     <>
@@ -90,15 +86,7 @@ export const AutoGrid: React.FC<CardProps> = ({ name, description, price, stock,
                 ':hover': { backgroundColor: '#7a5d64' },
               }}
               onClick={() =>
-                handleAddToCart({
-                  id: Date.now(),
-                  name,
-                  description,
-                  price,
-                  stock,
-                  image,
-                  category,
-                })
+                handleAddToCart(id)
               }
             >
               Add to Bag

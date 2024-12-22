@@ -2,13 +2,15 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { AnimatePresence, motion } from "motion/react";
-import { useCart } from "../hooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import getProduct from "@/helpers/getProduct";
+import { useCart } from "../hooks";
 
 export default function ShoppingBagProductCard() {
   const { productsInBag, removeFromCart } = useCart();
   const [removeProduct, setRemoveProduct] = useState<number | null>(null);
+  const [detailedProducts, setDetailedProducts] = useState<any[]>([]);
 
   const handleRemoveProduct = (productId: number) => {
     setRemoveProduct(productId);
@@ -16,7 +18,28 @@ export default function ShoppingBagProductCard() {
       removeFromCart(productId);
       setRemoveProduct(null);
     }, 300);
-  }
+  };
+
+  useEffect(() => {
+    // Obtener los datos completos de los productos
+    const fetchProducts = async () => {
+      const fetchedProducts = await Promise.all(
+        productsInBag.map(async (product) => {
+          try {
+            const detailedProduct = await getProduct(product.id);
+            return { ...detailedProduct, quantity: product.quantity };
+          } catch (error) {
+            console.error(`Error fetching product ${product.id}:`, error);
+            return null;
+          }
+        })
+      );
+
+      setDetailedProducts(fetchedProducts.filter((p) => p !== null));
+    };
+
+    fetchProducts();
+  }, [productsInBag]);
 
   return (
     <>
@@ -27,10 +50,9 @@ export default function ShoppingBagProductCard() {
             Go to products
           </Link>
         </Box>
-        
       ) : (
         <AnimatePresence>
-          {productsInBag.map((product) => (
+          {detailedProducts.map((product) => (
             removeProduct !== product.id && (
               <motion.div
                 key={product.id}
@@ -60,6 +82,9 @@ export default function ShoppingBagProductCard() {
                           style: "currency",
                           currency: "USD",
                         }).format(product.price)}
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                        Quantity: {product.quantity}
                       </Typography>
                     </CardContent>
                   </CardActionArea>

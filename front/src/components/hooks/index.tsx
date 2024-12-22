@@ -1,8 +1,16 @@
-import { useState } from 'react';
-import { IProduct } from '@/interfaces/IProduct';
+import { useState, useEffect } from 'react';
+
+interface ProductId {
+  id: number;
+  quantity: number;
+}
+
+const validateProductId = (productId: number): boolean => {
+  return Number.isInteger(productId) && productId >= 0 && productId <= 999;
+};
 
 export const useCart = () => {
-  const [productsInBag, setProductsInBag] = useState<IProductWithQuantity[]>(() => {
+  const [productsInBag, setProductsInBag] = useState<ProductId[]>(() => {
     if (typeof window !== 'undefined') {
       const savedCart = localStorage.getItem('productsInBag');
       return savedCart ? JSON.parse(savedCart) : [];
@@ -10,46 +18,55 @@ export const useCart = () => {
     return [];
   });
 
-  const addToCart = (product: IProduct) => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('productsInBag', JSON.stringify(productsInBag));
+    }
+  }, [productsInBag]);
+
+  const addToCart = (productId: number, quantity: number = 1) => {
+    if (!validateProductId(productId)) {
+      alert(`Invalid product id: ${productId}`);
+      return;
+    }
+
     setProductsInBag((prev) => {
-      const existingProduct = prev.find((p) => p.id === product.id);
+      const existingProduct = prev.find((p) => p.id === productId);
 
-      if (existingProduct && existingProduct.quantity >= product.stock) {
-        alert('There are no more items in stock');
-        return prev;
+      if (existingProduct) {
+        return prev.map((p) =>
+          p.id === productId ? { ...p, quantity: p.quantity + quantity } : p
+        );
+      } else {
+        return [...prev, { id: productId, quantity }];
       }
-
-      const updatedCart = prev.find((p) => p.id === product.id)
-        ? prev.map((p) =>
-            p.id === product.id ? { ...p, quantity: (p.quantity || 1) + 1 } : p
-          )
-        : [...prev, { ...product, quantity: 1 }];
-      localStorage.setItem('productsInBag', JSON.stringify(updatedCart));
-      return updatedCart;
     });
   };
 
   const removeFromCart = (productId: number) => {
-    setProductsInBag((prev) => {
-      const updatedCart = prev.filter((p) => p.id !== productId);
-      localStorage.setItem('productsInBag', JSON.stringify(updatedCart));
-      return updatedCart;
-    });
+    if (!validateProductId(productId)) {
+      alert(`Invalid product id: ${productId}`);
+      return;
+    }
+
+    setProductsInBag((prev) => prev.filter((p) => p.id !== productId));
   };
 
   const updateQuantity = (productId: number, quantity: number) => {
-    setProductsInBag((prev) => {
-      const updatedCart = prev.map((p) =>
-        p.id === productId ? { ...p, quantity } : p
-      );
-      localStorage.setItem('productsInBag', JSON.stringify(updatedCart));
-      return updatedCart;
-    });
+    if (!validateProductId(productId)) {
+      alert(`Invalid product id: ${productId}`);
+      return;
+    }
+
+    setProductsInBag((prev) =>
+      prev.map((p) => (p.id === productId ? { ...p, quantity } : p))
+    );
   };
 
-  return { productsInBag, addToCart, removeFromCart, updateQuantity };
-};
+  const clearCart = () => {
+    setProductsInBag([]);
+    localStorage.removeItem('productsInBag');
+  };
 
-interface IProductWithQuantity extends IProduct {
-  quantity: number;
-}
+  return { productsInBag, addToCart, removeFromCart, updateQuantity, clearCart };
+};
