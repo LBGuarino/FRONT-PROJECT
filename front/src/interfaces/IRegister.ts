@@ -6,9 +6,10 @@
     // "password": "Admin12345!"
 
 export interface IRegister {
-    name: string,
-    email: string,
-    address: string,
-    phone: string,
-    password: string
+    name: string | undefined | null,
+    email: string | undefined | null,
+    address?: string | undefined | null,
+    phone?: string | undefined | null,
+    sub: string | null | undefined,
+    password?: string | undefined | null
 }

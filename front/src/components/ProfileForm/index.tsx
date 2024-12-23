@@ -5,6 +5,8 @@ import { useState } from "react";
 import FormInput from "../FormInput";
 import { Alert } from "@mui/material";
 import styles from "./index.module.css"
+import axios from "axios";
+import getToken from "@/helpers/getToken";
 
 export default function ProfileForm() {
     const { user, error, isLoading } = useUser();
@@ -14,6 +16,28 @@ export default function ProfileForm() {
         const value = e.target.value;
         setForm({ ...form, [property]: value });
     };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const token = await getToken();
+            if (!token) {
+                throw new Error("Failed to fetch token");
+            }
+
+        const response = await axios.post("http://localhost:3001/users/register", {...form, 
+        auth0Sub: user?.sub, 
+        email: user?.email, 
+        name: user?.name,
+        password: token
+    })
+        console.log("Server response:", response.data);  
+        } catch (error) {
+            console.error("Error posting new user:", error);
+        }
+    }
+
 
     return (
         <>
@@ -47,7 +71,7 @@ export default function ProfileForm() {
             }
 
             {user &&
-                <>
+                <form onSubmit={handleSubmit}>
                     {signupConfig.map(({ name, label, type, placeholder }) => {
                         return (
                             <FormInput
@@ -61,7 +85,8 @@ export default function ProfileForm() {
                             />
                         );
                     })}
-                </>
+                    <button type="submit" className="">Submit</button>
+                </form>
             }
         </>
     );

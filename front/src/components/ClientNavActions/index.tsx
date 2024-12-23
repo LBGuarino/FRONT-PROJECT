@@ -2,6 +2,9 @@
 import { Alert } from '@mui/material';
 import AccountMenu from '../AccountMenu';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import postNewLoggedUser from '@/helpers/postNewLoggedUser';
+import { useEffect, useState } from 'react';
+import { IRegister } from '@/interfaces/IRegister';
 
 
 export default function ClientNavActions() {

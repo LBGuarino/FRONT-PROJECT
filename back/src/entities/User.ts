@@ -12,27 +12,27 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ unique : true, nullable: false })
+    @Column({ unique : true, nullable: true })
     auth0Sub: string;
 
     @Column({
-        nullable: true
+    nullable: false
     })
     name: string;
 
     @Column({
-        unique: true,
-        nullable: true
+    unique: true,
+    nullable: false
     })
     email: string;
 
     @Column({
-        nullable: true
+    nullable: false
     })
     address: string;
 
     @Column({
-        nullable: true  
+    nullable: false  
     })
     phone: string;
 

@@ -24,7 +24,7 @@ export const useCart = () => {
     }
   }, [productsInBag]);
 
-  const addToCart = (productId: number, quantity: number = 1) => {
+  const addToCart = (productId: number, quantity: number) => {
     if (!validateProductId(productId)) {
       alert(`Invalid product id: ${productId}`);
       return;

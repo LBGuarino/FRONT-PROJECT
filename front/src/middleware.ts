@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 

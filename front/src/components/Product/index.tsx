@@ -1,17 +1,15 @@
 'use client';
 import Grid from '@mui/material/Grid2';
-import Fade from '@mui/material';
 import { CardProps } from '../ProductPageCard/types';
 import ProductCounter from '../Counter';
 import { IconButton, Snackbar, SnackbarOrigin } from '@mui/material';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { IProduct } from '@/interfaces/IProduct';
 import { useCart } from '../hooks';
 import { useState } from 'react';
-import { TransitionProps } from '@mui/material/transitions';
 
 export const AutoGrid: React.FC<CardProps> = ({ id, name, description, price, stock, image, category }) => {
   const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState<number>(1);
   const [state, setState] = useState<{
     open: boolean;
     vertical: SnackbarOrigin['vertical'];
@@ -34,8 +32,12 @@ export const AutoGrid: React.FC<CardProps> = ({ id, name, description, price, st
     setState({ ...state, open: false });
   };
 
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantity(newQuantity);
+  };
+
   const handleAddToCart = (productId: number) => {
-      addToCart(productId);
+      addToCart(productId, quantity);
       handleClick({ vertical: 'top', horizontal: 'right' });
     }
 
@@ -72,7 +74,7 @@ export const AutoGrid: React.FC<CardProps> = ({ id, name, description, price, st
             <p className="mb-4">Category: {category.name || 'Uncategorized'}</p>
           </div>
           <div className="flex justify-center gap-4 mt-4">
-            <ProductCounter />
+            <ProductCounter onQuantityChange={handleQuantityChange}/>
             <IconButton
               size="small"
               sx={{

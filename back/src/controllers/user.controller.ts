@@ -7,13 +7,14 @@ import {
 
 export const registerUser = catchedController(
   async (req: Request, res: Response) => {
-    const { email, password, name, address, phone } = req.body;
+    const { email, password, name, address, phone, auth0Sub } = req.body;
     const newUser = await registerUserService({
       email,
       password,
       name,
       address,
       phone,
+      auth0Sub,
     });
     res.status(201).send(newUser);
   }

@@ -7,8 +7,8 @@ const validateUserRegister = (
   res: Response,
   next: NextFunction
 ) => {
-  const { email, password, name, address, phone } = req.body;
-  if (!email || !password || !name || !address || !phone)
+  const { email, password, name, address, phone, auth0Sub } = req.body;
+  if (!email || !password || !name || !address || !phone || !auth0Sub)
     next(new ClientError("Missing fields"));
   else next();
 };
