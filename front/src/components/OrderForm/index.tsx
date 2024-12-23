@@ -1,16 +1,16 @@
 'use client'
-import { useCart } from "../hooks";
+import { ProductId, useCart } from "../hooks";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { Checkbox, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup } from "@mui/material";
 import PaymentBox from "../PaymentBox";
 import getToken from "@/helpers/getToken";
 import { IProduct } from "@/interfaces/IProduct";
+import axios from "axios";
+import { headers } from "next/headers";
+import { useState } from "react";
 
 
-interface IOrderFormProps {
-    auth0Sub: string;
-}
 export default function OrderForm() {
     const { productsInBag } = useCart();
     const { user, error } = useUser();
@@ -19,23 +19,14 @@ export default function OrderForm() {
         event.preventDefault();
         try {
             const token = await getToken();
-            const response = await fetch('http://localhost:3001/orders', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                },
-                body: 
-                    JSON.stringify({
-                    products: productsInBag.map((product) => product.id),
-                    auth0Sub: user?.sub
-                })
-                
-            });  
+            const response = await axios.post("http://localhost:3001/orders", {
+                products: productsInBag.map((product: ProductId) => product.id),
+                auth0Sub: user?.sub,
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+            );
         } catch (error) {
             console.error(error);
-            console.log(productsInBag.map((product) => product.id));
-            console.log(user?.sub);
         }
     }
 

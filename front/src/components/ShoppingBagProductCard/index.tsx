@@ -21,7 +21,6 @@ export default function ShoppingBagProductCard() {
   };
 
   useEffect(() => {
-    // Obtener los datos completos de los productos
     const fetchProducts = async () => {
       const fetchedProducts = await Promise.all(
         productsInBag.map(async (product) => {

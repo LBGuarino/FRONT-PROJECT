@@ -9,6 +9,7 @@ const validateOrderFields = (
   next: NextFunction
 ) => {
   const { products } = req.body;
+  console.log(`products: ${products}`);
   if (!products.length)
     next(new ClientError("Order must have an array of products"));
   if (!products || products.length === 0)

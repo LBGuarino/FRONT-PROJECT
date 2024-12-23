@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-interface ProductId {
+export interface ProductId {
   id: number;
   quantity: number;
 }

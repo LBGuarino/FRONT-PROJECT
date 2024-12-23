@@ -30,9 +30,10 @@ export default function ProductsPage() {
             </Breadcrumbs>
             <AnimatedPage>
             <div className={styles.cardsContainer}>
-              {products.map(({name, description, price, stock, image, category}, index: number) => (
+              {products.map(({id, name, description, price, stock, image, category}, index: number) => (
                         <ProductCard
-                        key={index}
+                        id={id}
+                        key={id}
                         name={name}
                         description={description}
                         price={price}

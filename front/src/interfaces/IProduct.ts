@@ -16,5 +16,5 @@ export interface IProduct {
     price: number,
     stock: number,
     image: string,
-    category: ICategory  
+    category: ICategory,
 }

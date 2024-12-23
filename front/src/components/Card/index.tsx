@@ -3,9 +3,10 @@ import styles from "./index.module.css";
 
 // types
 import { CardProps } from "./types";
+import LandingAddButton from "../LandingAddButton";
 
 
-export const Card: React.FC<CardProps> = ({ name, description, price, stock, image, category }) => {
+export const Card: React.FC<CardProps> = ({ id, name, description, price, stock, image, category }) => {
     return (
         <div className={styles.card}>
             <img src={image} alt={name} className={styles.image} />
@@ -15,7 +16,7 @@ export const Card: React.FC<CardProps> = ({ name, description, price, stock, ima
                     {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(price)}
                 </p>
                 {stock > 0 ? (
-                    <button className={styles.addToCart}>Add to Cart</button>
+                    <LandingAddButton productId={id} quantity={1} />
                 ) : (
                     <button className={styles.outOfStock}>Out of Stock</button>
                 )}

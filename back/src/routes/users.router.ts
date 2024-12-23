@@ -25,15 +25,6 @@ usersRouter.get("/orders", checkJwt, async (req: Request, res: Response) => {
     where : { auth0Sub : authSub}
 })  
 
-  if (!user) {
-    const newUser = await UserRepository.save({
-      auth0Sub: authSub,
-      name: req.auth?.payload?.name,
-      email: req.auth?.payload?.email,
-    }as DeepPartial<User>);
-    return res.status(201).json({ message: "User created", userId: newUser.id });
-  }
-
   const orders = await OrderRepository.find({
     relations: ["products"],
     where: { user: { id: user?.id } },

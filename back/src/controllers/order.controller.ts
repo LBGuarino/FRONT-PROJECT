@@ -18,7 +18,8 @@ export const createOrder = catchedController(
     }
 
     const user = await UserRepository.findOne({   
-      where : { auth0Sub }
+      where: { auth0Sub },
+      select: ['id']
     })
 
 if (!user) {

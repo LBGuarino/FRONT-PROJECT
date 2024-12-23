@@ -1,6 +1,7 @@
 import { ICategory } from "@/interfaces/ICategory";
 
-export interface CardProps {    
+export interface CardProps {   
+    id: number 
     name: string,
     description: string,
     price: number,
