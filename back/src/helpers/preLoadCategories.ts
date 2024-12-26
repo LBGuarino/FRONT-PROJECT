@@ -9,7 +9,7 @@ interface ICategory {
 const categoriesToPreLoad: ICategory[] = [
     { name: 'Candles' },
     { name: 'Scented Candles' },
-    { name: 'Scented Oilsaa' },
+    { name: 'Scented Oils' },
     { name: 'Diffusers' },
     { name: 'Parfumes' },
     { name: 'Candle Holders' },

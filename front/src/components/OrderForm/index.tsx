@@ -2,18 +2,20 @@
 import { ProductId, useCart } from "../hooks";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import { Checkbox, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup } from "@mui/material";
+import { Checkbox, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, IconButton, Radio, RadioGroup } from "@mui/material";
 import PaymentBox from "../PaymentBox";
 import getToken from "@/helpers/getToken";
 import { IProduct } from "@/interfaces/IProduct";
 import axios from "axios";
 import { headers } from "next/headers";
 import { useState } from "react";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 export default function OrderForm() {
     const { productsInBag } = useCart();
     const { user, error } = useUser();
+    const { clearCart } = useCart();
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -30,6 +32,12 @@ export default function OrderForm() {
         }
     }
 
+    const handleLogout = () => {
+        window.location.href = '/api/auth/logout';
+        clearCart();
+      };
+    
+
     return (
         <>
             {productsInBag.length === 0 ? (
@@ -40,8 +48,13 @@ export default function OrderForm() {
                 className="w-3/4 h-3/4 justify-center mt-10 ml-40"
                 />
             ) : (
-                <div className="flex flex-col gap-4 p-4">
-                    <p className="text-2xl p-8 font-light ">Account: {`${user?.email}`}</p>
+                <div className="flex flex-col gap-4">
+                    <div className="flex flex-row gap-2">
+                        <p className="text-2xl p-6 font-light ">Account: {`${user?.email}`}</p>
+                        <button onClick={handleLogout} className="rounded-full size-10 transition duration-150 ease-in-out bg-slate-400 text-white hover:bg-slate-600 mt-6">
+                            <LogoutIcon />
+                        </button>
+                    </div>
 
 
                     <Divider className="w-7/8" />
@@ -75,7 +88,7 @@ export default function OrderForm() {
                         <div className="flex">
                             <PaymentBox />
                         </div>
-                        <button type="submit" className="bg-blue-500 text-white p-2 rounded">Submit</button>
+                        <button type="submit" className="transition duration-150 ease-in-out bg-slate-400 text-white p-2 hover:bg-slate-600 rounded">Submit</button>
                     </form>
 
                     <Divider className="w-7/8" />

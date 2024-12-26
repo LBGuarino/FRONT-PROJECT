@@ -29,7 +29,7 @@ export default function LandingPage() {
         <Swiper 
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={30}
-            slidesPerView={3}
+            slidesPerView={4}
             navigation
             pagination={{ clickable: true }}
             autoplay={{ delay: 5000 }}

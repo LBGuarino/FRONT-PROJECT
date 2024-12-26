@@ -1,30 +1,34 @@
 "use client";
-import { Alert } from '@mui/material';
+import { Alert, Skeleton } from '@mui/material';
 import AccountMenu from '../AccountMenu';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import postNewLoggedUser from '@/helpers/postNewLoggedUser';
-import { useEffect, useState } from 'react';
-import { IRegister } from '@/interfaces/IRegister';
 
 
 export default function ClientNavActions() {
-    const { user, error } = useUser();
-    
+    const { user, error, isLoading } = useUser();
+
     return (
-    <>  
-    {error && <Alert severity="error"> Error: {error.message} </Alert>}
-        <div className="flex flex-row justify-center">
-            {user ?
-            <div>
-            <AccountMenu />
-            </div> :
-            <div className="flex flex-row">
-                <a href="/api/auth/login" className="inline-flex font-normal gap-2 uppercase mb-1 text-yellow-950 transition duration-150 ease-in-out hover:text-white">
-                    <img src="/icons/user.svg" width={16} height={16}/> Login
-                </a>
-            </div>
+        <>
+            {error && <Alert severity="error"> Error: {error.message} </Alert>}
+            {isLoading && <>
+                <Skeleton variant='circular'>
+                    <AccountMenu />
+                </Skeleton>
+            </>
             }
-        </div>
-    </> 
+            <div className="flex flex-row justify-center">
+                {user ?
+                    <div>
+                        <AccountMenu />
+                    </div> : null}
+                {!user && !isLoading && <>
+                    <div className="flex flex-row">
+                        <a href="/api/auth/login" className="inline-flex font-normal gap-2 uppercase mb-1 text-yellow-950 transition duration-150 ease-in-out hover:text-white">
+                            <img src="/icons/user.svg" width={16} height={16} /> Login
+                        </a>
+                    </div>
+                </>}
+            </div>
+        </>
     )
 }   

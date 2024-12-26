@@ -4,9 +4,8 @@ import { IProduct } from "@/interfaces/IProduct";
 import { getProducts } from "@/helpers/getProducts";
 import { ProductCard } from "@/components/ProductPageCard";
 import styles from './index.module.css';
-import BasicBreadcrumbs from "@/components/Breadcrumbs";
 import AnimatedPage from "@/components/AnimatedPage";
-import { Breadcrumbs } from "@mui/material";
+import { Breadcrumbs, Skeleton } from "@mui/material";
 
 export default function ProductsPage() {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -30,7 +29,7 @@ export default function ProductsPage() {
             </Breadcrumbs>
             <AnimatedPage>
             <div className={styles.cardsContainer}>
-              {products.map(({id, name, description, price, stock, image, category}, index: number) => (
+              {products.map(({id, name, description, price, stock, image, category}) => (
                         <ProductCard
                         id={id}
                         key={id}

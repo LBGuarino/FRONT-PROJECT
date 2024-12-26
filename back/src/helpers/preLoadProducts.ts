@@ -55,7 +55,7 @@ const productsToPreLoad: IProduct[] = [
     categoryId: 5
 },
   {
-    name: "Munich Christmas Market",
+    name: "Christmas in Munich",
     description: "Original Medium Scented candle",
     price: 23,
     stock: 9,

@@ -7,12 +7,15 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { Drawer } from '@mui/material';
 import { dashboardProperties } from "./DashboardProperties";
 import styles from "./index.module.css"
+import { useCart } from '../hooks';
+import { clear } from 'console';
 
 export default function AccountMenu() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [hoveredCategory, setHoveredCategory] = React.useState<number | null>(null);
   
   const { user, error, isLoading } = useUser();
+  const { clearCart } = useCart()
 
   const handleMouseEnter = (propertyId: number) => {
     setHoveredCategory(propertyId);
@@ -28,6 +31,7 @@ export default function AccountMenu() {
 
   const handleLogout = () => {
     window.location.href = '/api/auth/logout';
+    clearCart();
   };
 
   const DrawerList = (

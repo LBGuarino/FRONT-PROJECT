@@ -1,18 +1,3 @@
-.addToCart {
-    background-color: #5f4b52; /* 16-1523 TCX */
-    color: #ffffff;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin: 1em;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.addToCart:hover {
-    background-color: #7a5d64;
-}
-
 .outOfStock {
     background-color: #d9d9d9;
     color: #888888;
@@ -24,12 +9,12 @@
 }
 
 .share {
-    color: #5f4b52;
+    color: #c08383;
     transition: color 0.3s ease;
 }
 
 .share:hover {
-    color: #20181a;
+    color: #b34a4a;
 }
 
 .name {
