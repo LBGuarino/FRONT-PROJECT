@@ -4,10 +4,12 @@ import {
   JoinColumn,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Order } from "./Order";
 import { Category } from "./Category";
+import { OrderProduct } from "./ProductQuantities";
 
 @Entity({ name: "products" })
 export class Product {
@@ -35,4 +37,7 @@ export class Product {
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: "categoryId" })
   category: Category;
+
+  @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.product)
+  orderProducts: OrderProduct[];
 }

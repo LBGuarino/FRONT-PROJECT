@@ -4,17 +4,25 @@ import { OrderRepository } from "../repositories/order.repository";
 import { ProductRepository } from "../repositories/product.repository";
 import { UserRepository } from "../repositories/user.repository";
 import { OrderStatus } from "../entities/Order";  
+import { OrderProduct } from "../entities/ProductQuantities";
+import { OrderProductRepository } from "../repositories/orderproduct.repository";
 
 export const createOrderService = async (
   createOrderDto: CreateOrderDto
 ): Promise<Order> => {
-  const productsF = [];
+  const orderProducts: OrderProduct[] = [];
 
-  for await (const id of createOrderDto.products) {
+  for await (const {id, quantity} of createOrderDto.products) {
     const product = await ProductRepository.findOneBy({ id });
     if (!product) throw new Error(`Product with id ${id} not found`);
-    if (product.stock <= 0) throw new Error(`Product ${product.name} is out of stock`);
-    productsF.push(product);
+    if (product.stock < quantity)
+      throw new Error(`Not enough stock for product ${id}`);
+
+    const orderProduct = OrderProductRepository.create({
+      product,
+      quantity,
+    });
+    orderProducts.push(orderProduct);
   }
 
   const userF = await UserRepository.findOneBy({ id: createOrderDto.userId });
@@ -24,9 +32,16 @@ export const createOrderService = async (
     status: OrderStatus.PENDING,
     date: new Date(),
     user: userF,
-    products: productsF,
+    orderProducts,
   });
 
   await OrderRepository.save(newOrder);
+  console.log(newOrder)
+
+  for (const orderProduct of orderProducts) {
+    orderProduct.order = newOrder;
+    await OrderProductRepository.save(orderProduct);
+  }
+  
   return newOrder;
 };

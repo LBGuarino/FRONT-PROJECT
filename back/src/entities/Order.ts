@@ -5,10 +5,12 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { User } from "./User";
 import { Product } from "./Product";
+import { OrderProduct } from "./ProductQuantities";
 
 export enum OrderStatus {
   PENDING = "pending",
@@ -38,7 +40,9 @@ export class Order {
   @JoinColumn({ name: "userId" })
   user: User;
 
-  @ManyToMany(() => Product)
-  @JoinTable()
-  products: Product[];
+  @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.order, {
+    cascade: true,
+  })
+  orderProducts: OrderProduct[];
+
 }

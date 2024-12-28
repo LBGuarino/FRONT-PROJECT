@@ -1,4 +1,4 @@
 export interface CreateOrderDto {
   userId: number | undefined;
-  products: number[];
+  products: { id: number, quantity: number }[];
 }

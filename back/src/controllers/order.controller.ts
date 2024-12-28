@@ -3,9 +3,10 @@ import { createOrderService } from "../services/order.service";
 import { catchedController } from "../utils/catchedController";
 import { UserRepository } from "../repositories/user.repository";
 import jwt from "jsonwebtoken";
+import { OrderProduct } from "../entities/ProductQuantities";
 
 interface OrderRequest {
-  products: number[];
+  products: { id: number, quantity: number }[];
   auth0Sub: string;
 }
 

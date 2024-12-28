@@ -79,7 +79,7 @@ export default function TemporaryDrawer() {
                     <ListItemButton
                       className={styles.subCategoryButton}
                       component="a"
-                      href={`/${category.name.toLowerCase()}/${sub.name
+                      href={`/products/&${category.name.toLowerCase()}/${sub.name
                         .toLowerCase()
                         .replace(/ /g, '-')}`}
                     >

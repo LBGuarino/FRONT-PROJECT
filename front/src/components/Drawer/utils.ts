@@ -22,14 +22,10 @@ export const mainCategories: mainCategories[] = [
             },
             {
                 id: 2,
-                name: 'Christmas Specials'
-            },
-            {
-                id: 3,
                 name: 'Soy Candles'
             },
             {
-                id: 4,
+                id: 3,
                 name: 'Small Gifts'
             }
         ]
@@ -37,7 +33,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 2,
         name: 'Scented Oils',
-        path: 'products/&scented-oils',
+        path: '/products/&scented-oils',
         subCategories: [
             {
                 id: 1,
@@ -56,7 +52,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 3,
         name: 'Diffusers',
-        path: 'products/&diffusers',
+        path: '/products/&diffusers',
         subCategories: [
             {
                 id: 1,
@@ -75,7 +71,7 @@ export const mainCategories: mainCategories[] = [
     {
         id: 4,
         name: 'Perfumes',
-        path: 'products/&perfumes',
+        path: '/products/&perfumes',
         subCategories: [
             {
                 id: 1,
