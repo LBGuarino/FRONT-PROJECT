@@ -12,6 +12,7 @@ import { useCart } from '../hooks';
 import { Divider, IconButton, Snackbar, SnackbarOrigin } from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import ProductCounter from '../Counter';
+import WishlistButton from '../AddToWishlistButton';
 
 export const ProductCard: React.FC<CardProps> = ({ id, name, description, price, stock, image, category }) => {
   const { addToCart } = useCart();
@@ -48,6 +49,10 @@ export const ProductCard: React.FC<CardProps> = ({ id, name, description, price,
     setQuantity(newQuantity);
   };
 
+  const handleWishlistChange = (added: boolean) => {
+    console.log(added);
+  };
+
 
   return (
     <>
@@ -73,6 +78,9 @@ export const ProductCard: React.FC<CardProps> = ({ id, name, description, price,
           {stock > 0 ? (
             <>
             <ProductCounter onQuantityChange={handleQuantityChange}/>
+            <div className='flex mr-auto ml-5'>
+              <WishlistButton onAddToWishlist={handleWishlistChange} />
+            </div>
             <div className='flex ml-auto mr-4 gap-4'>
             <IconButton
             size="small"

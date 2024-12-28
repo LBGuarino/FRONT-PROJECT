@@ -25,7 +25,7 @@ const ProductCounter: React.FC<ProductCounterProps> = ({ onQuantityChange }) => 
       <button
         className={styles.counterButton}
         onClick={handleDecrement}
-        aria-label="Decrementar cantidad"
+        aria-label="Decrement quantity"
       >
         -
       </button>
@@ -33,7 +33,7 @@ const ProductCounter: React.FC<ProductCounterProps> = ({ onQuantityChange }) => 
       <button
         className={styles.counterButton}
         onClick={handleIncrement}
-        aria-label="Incrementar cantidad"
+        aria-label="Increment quantity"
       >
         +
       </button>

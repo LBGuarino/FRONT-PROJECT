@@ -1,7 +1,6 @@
 import NavBar from "@/components/NavBar";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import EmotionProvider from "@/components/ClientComponent";
 import { UserProvider } from '@auth0/nextjs-auth0/client'
 
 export default function RootLayout({

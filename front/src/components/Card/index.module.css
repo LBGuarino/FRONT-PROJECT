@@ -59,3 +59,27 @@
     font-weight: 400;
     text-shadow: #5f4b52 10px 10px 10px inset;
 }
+
+.description {
+    color: #5f4b52; /* 16-1523 TCX */
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .bounce {
+    animation: bounce 0.8s;
+  }
+  
