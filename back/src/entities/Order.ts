@@ -10,7 +10,7 @@ import {
 } from "typeorm";
 import { User } from "./User";
 import { Product } from "./Product";
-import { OrderProduct } from "./ProductQuantities";
+import { OrderProduct } from "./OrderProduct";
 
 export enum OrderStatus {
   PENDING = "pending",
@@ -40,9 +40,7 @@ export class Order {
   @JoinColumn({ name: "userId" })
   user: User;
 
-  @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.order, {
-    cascade: true,
-  })
+  @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.order)
   orderProducts: OrderProduct[];
 
 }

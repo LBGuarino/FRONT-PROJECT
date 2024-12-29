@@ -2,8 +2,6 @@ import { Request, Response } from "express";
 import { createOrderService } from "../services/order.service";
 import { catchedController } from "../utils/catchedController";
 import { UserRepository } from "../repositories/user.repository";
-import jwt from "jsonwebtoken";
-import { OrderProduct } from "../entities/ProductQuantities";
 
 interface OrderRequest {
   products: { id: number, quantity: number }[];
@@ -19,7 +17,7 @@ export const createOrder = catchedController(
     }
 
     const user = await UserRepository.findOne({   
-      where: { auth0Sub },
+      where: { auth0Sub: auth0Sub },
       select: ['id']
     })
 

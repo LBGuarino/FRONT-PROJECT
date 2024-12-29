@@ -5,7 +5,7 @@ import { Credential } from "../entities/Credential";
 import { Order } from "../entities/Order";
 import { Category } from "../entities/Category";
 import { Product } from "../entities/Product";
-import { OrderProduct } from "../entities/ProductQuantities";
+import { OrderProduct } from "../entities/OrderProduct";
 
 export const AppDataSource = new DataSource({
   type: "postgres",

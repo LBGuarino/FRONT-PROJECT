@@ -19,13 +19,22 @@ export default function OrderForm() {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+
+        const validProducts = productsInBag.map((product) => ({
+            id: product.id,
+            quantity: product.quantity,
+        }));
         try {
             const token = await getToken();
             const response = await axios.post("http://localhost:3001/orders", {
-                products: productsInBag.map((product: ProductId) => product.id),
+                products: validProducts,
                 auth0Sub: user?.sub,
             },
-            { headers: { Authorization: `Bearer ${token}` } }
+            { 
+                headers: { 
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+            }}
             );
         } catch (error) {
             console.error(error);

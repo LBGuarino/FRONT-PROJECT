@@ -9,7 +9,6 @@ const validateOrderFields = (
   next: NextFunction
 ) => {
   const { products } = req.body;
-  console.log(`products: ${products}`);
   if (!products.length)
     next(new ClientError("Order must have an array of products"));
   if (!products || products.length === 0)
@@ -24,7 +23,11 @@ const validateItemsExist = async (
 ) => {
   const { products } = req.body;
 
-  for await (const itemId of products) {
+  for await (const item of products) {
+    const itemId = typeof item === 'object' ? item.id : item;
+    if (typeof itemId !== 'number')
+      return next(new ClientError("Invalid product id"));
+
     const exists = await checkProductExists(itemId);
     if (!exists)
       return next(
