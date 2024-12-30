@@ -10,19 +10,24 @@ const validateProductId = (productId: number): boolean => {
 };
 
 export const useCart = () => {
-  const [productsInBag, setProductsInBag] = useState<ProductId[]>(() => {
-    if (typeof window !== 'undefined') {
-      const savedCart = localStorage.getItem('productsInBag');
-      return savedCart ? JSON.parse(savedCart) : [];
-    }
-    return [];
-  });
+  const [productsInBag, setProductsInBag] = useState<ProductId[]>([]);
 
+  // Cargar el carrito desde el localStorage al montar el componente
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('productsInBag', JSON.stringify(productsInBag));
+      const savedCart = localStorage.getItem('productsInBag');
+      if (savedCart) {
+        setProductsInBag(JSON.parse(savedCart));
+      }
     }
-  }, [productsInBag]);
+  }, []);
+
+  // Guardar el carrito en localStorage cada vez que se actualice el estado
+  const syncLocalStorage = (cart: ProductId[]) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('productsInBag', JSON.stringify(cart));
+    }
+  };
 
   const addToCart = (productId: number, quantity: number) => {
     if (!validateProductId(productId)) {
@@ -31,15 +36,17 @@ export const useCart = () => {
     }
 
     setProductsInBag((prev) => {
-      const existingProduct = prev.find((p) => p.id === productId);
+      const updatedCart = [...prev];
+      const existingProductIndex = updatedCart.findIndex((p) => p.id === productId);
 
-      if (existingProduct) {
-        return prev.map((p) =>
-          p.id === productId ? { ...p, quantity: p.quantity + quantity } : p
-        );
+      if (existingProductIndex >= 0) {
+        updatedCart[existingProductIndex].quantity += quantity;
       } else {
-        return [...prev, { id: productId, quantity }];
+        updatedCart.push({ id: productId, quantity });
       }
+
+      syncLocalStorage(updatedCart); // Sincroniza el localStorage inmediatamente
+      return updatedCart;
     });
   };
 
@@ -49,7 +56,11 @@ export const useCart = () => {
       return;
     }
 
-    setProductsInBag((prev) => prev.filter((p) => p.id !== productId));
+    setProductsInBag((prev) => {
+      const updatedCart = prev.filter((p) => p.id !== productId);
+      syncLocalStorage(updatedCart); // Sincroniza el localStorage inmediatamente
+      return updatedCart;
+    });
   };
 
   const updateQuantity = (productId: number, quantity: number) => {
@@ -58,14 +69,20 @@ export const useCart = () => {
       return;
     }
 
-    setProductsInBag((prev) =>
-      prev.map((p) => (p.id === productId ? { ...p, quantity } : p))
-    );
+    setProductsInBag((prev) => {
+      const updatedCart = prev.map((p) =>
+        p.id === productId ? { ...p, quantity } : p
+      );
+      syncLocalStorage(updatedCart); // Sincroniza el localStorage inmediatamente
+      return updatedCart;
+    });
   };
 
   const clearCart = () => {
     setProductsInBag([]);
-    localStorage.removeItem('productsInBag');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('productsInBag');
+    }
   };
 
   return { productsInBag, addToCart, removeFromCart, updateQuantity, clearCart };

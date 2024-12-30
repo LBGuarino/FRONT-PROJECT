@@ -18,11 +18,11 @@ export default function RootLayout({
         <link rel="icon" href="Favicon.ico" />
       </head>
       <UserProvider>
-        <body>
-            <NavBar />
-            <main>{children}</main>
-            <Footer />
-        </body>
+          <body>
+              <NavBar />
+              <main>{children}</main>
+              <Footer />
+          </body>
       </UserProvider>
 
     </html>

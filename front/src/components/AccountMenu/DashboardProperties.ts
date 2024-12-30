@@ -18,12 +18,12 @@ export const dashboardProperties: DashboardProperties[] = [
             {
                 id: 1,
                 name: 'Active Orders',
-                path: '/dashboard/my-orders'
+                path: '/profile/my-orders'
             },
             {
                 id: 2,
                 name: 'Favorites',
-                path: '/dashboard/my-favorites'
+                path: '/profile/my-favorites'
             }
         ]
     },
@@ -34,12 +34,12 @@ export const dashboardProperties: DashboardProperties[] = [
             {
                 id: 1,
                 name: 'Addresses',
-                path: '/dashboard/addresses'
+                path: '/profile/addresses'
             },
             {
                 id: 2,
                 name: 'Payments',
-                path: '/dashboard/payments'
+                path: '/profile/payments'
             },
             {
                 id: 3,

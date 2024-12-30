@@ -16,7 +16,7 @@ export default function FormInput({
     placeholder: string
 }) {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col w-80'>
         <label className={styles.label} htmlFor={name}>{label}</label>
         <input
           className={styles.input}
