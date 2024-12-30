@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import getToken from "@/helpers/getToken";
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import { IOrder } from "@/interfaces/IOrder";
+import { OrderProductsCard } from "../OrderProductsCard";
 
 export default function OrderGrid() {
   const [orders, setOrders] = useState<IOrder[]>([]);
@@ -22,6 +23,7 @@ export default function OrderGrid() {
         },
       });
       setOrders(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
@@ -36,6 +38,7 @@ export default function OrderGrid() {
       {!orders.length ? (
         <p>Here you can find your ongoing orders</p>
       ) : (
+        <div key={orders.length}>
         <AnimatePresence>
           {orders.map((order) => (
             <motion.div
@@ -58,55 +61,18 @@ export default function OrderGrid() {
                     Date: {new Date(order.date).toLocaleDateString()}
                   </Typography>
                 </CardContent>
-
-                {order.products.map((product) => {
-                    console.log(product)
-                  const productQuantity = order.productsQuantity?.find(
-                    (pq) => pq.id === product.id
-                  )?.quantity;
-
-                  console.log(productQuantity)
-
-                  return (
-                    <CardActionArea key={product.id} sx={{ display: "flex", justifyContent: "center" }}>
-                      <CardMedia
-                        component="img"
-                        src={product.image}
-                        alt={product.name}
-                        sx={{ width: 120, height: 120 }}    
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {product.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          Price: {new Intl.NumberFormat("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                          }).format(product.price)}
-                        </Typography>
-                        {productQuantity !== undefined && (
-                        <>
-                        <Typography variant="body2" color="text.secondary">
-                            Quantity: {productQuantity}
-                        </Typography>
-
-                        <Typography variant="body2" color="text.secondary">
-                            Total Price: {new Intl.NumberFormat("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                            }).format(product.price * productQuantity)}
-                        </Typography>
-                        </>                          
-                        )}
-                      </CardContent>
-                    </CardActionArea>
-                  );
-                })}
+                {order.orderProducts.map((op) => (
+                  <OrderProductsCard
+                  key={`${order.id}-${op.product.id}`}
+                  product={op.product} 
+                  productQuantity={op.quantity} 
+                  />
+                ))}
               </Card>
             </motion.div>
           ))}
         </AnimatePresence>
+        </div>
       )}
     </>
   );

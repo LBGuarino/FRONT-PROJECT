@@ -1,10 +1,11 @@
-import { getProducts } from "./getProducts";
+import axios from "axios";
 
 export default async function getProduct(id: number) {
-    const products = await getProducts();
-    const product = products.find((product) => product.id === id);
-    if (!product) {
-        throw Error("Product not found");
+    try {
+        const product = await axios.get(`http://localhost:3001/products/${id}`);
+        return product.data;
+
+    } catch (error) {
+        console.error(`Error fetching product ${id}:`, error);
     }
-    return product;
 };

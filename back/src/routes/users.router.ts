@@ -26,10 +26,10 @@ usersRouter.get("/orders", checkJwt, async (req: Request, res: Response) => {
 })  
 
   const orders = await OrderRepository.find({
-    relations: ["products"],
+    relations: ["orderProducts", "orderProducts.product"],
     where: { user: { id: user?.id } },
   });
-
+  
   res.status(200).json(orders);
 })
 
