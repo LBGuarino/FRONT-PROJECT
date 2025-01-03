@@ -19,9 +19,9 @@ export default function NavBar(){
 
             
             <div className={styles.logoContainer}>
-                <a href='/'>
+                <Link href='/'>
                     <img src='/images/logo.svg' alt="logo" className={styles.logo} />
-                </a>
+                </Link>
             </div>
 
             <div className={styles.searchBar}>

@@ -5,7 +5,8 @@ import { getProducts } from "@/helpers/getProducts";
 import { ProductCard } from "@/components/ProductPageCard";
 import styles from './index.module.css';
 import AnimatedPage from "@/components/AnimatedPage";
-import { Breadcrumbs, Skeleton } from "@mui/material";
+import { Breadcrumbs } from "@mui/material";
+import Link from "next/link";
 
 export default function ProductsPage() {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -23,9 +24,9 @@ export default function ProductsPage() {
     return (
         <>
             <Breadcrumbs aria-label="breadcrumb" sx={{ margin: '1rem' }}>
-                <a href="/">Home</a>
-                <a href="/products">Products</a>
-                <a href={"/products/&candles"}>Candles</a>
+                <Link href="/">Home</Link>
+                <Link href="/products">Products</Link>
+                <Link href={"/products/&candles"}>Candles</Link>
             </Breadcrumbs>
             <AnimatedPage>
             <div className={styles.cardsContainer}>

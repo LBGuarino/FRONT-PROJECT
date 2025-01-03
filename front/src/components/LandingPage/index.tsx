@@ -36,7 +36,7 @@ export default function LandingPage() {
             className={styles.swiperContainer}>
         
             {products.map(({id, name, description, price, stock, image, category }, index: number) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={id}>
                     <Card
                     id={id}
                     name={name}

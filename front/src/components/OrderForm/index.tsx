@@ -1,21 +1,17 @@
 'use client'
-import { ProductId, useCart } from "../hooks";
+import { useCartContext } from "../../../context/CartContext";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import { Checkbox, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, IconButton, Radio, RadioGroup } from "@mui/material";
+import {  Divider, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import PaymentBox from "../PaymentBox";
 import getToken from "@/helpers/getToken";
-import { IProduct } from "@/interfaces/IProduct";
 import axios from "axios";
-import { headers } from "next/headers";
-import { useState } from "react";
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
 export default function OrderForm() {
-    const { productsInBag } = useCart();
-    const { user, error } = useUser();
-    const { clearCart } = useCart();
+    const { productsInBag, clearCart } = useCartContext();
+    const { user } = useUser();
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -36,6 +32,7 @@ export default function OrderForm() {
                     "Content-Type": "application/json",
             }}
             );
+            console.log(response.data);
         } catch (error) {
             console.error(error);
         }

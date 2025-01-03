@@ -8,14 +8,14 @@ import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import { CardProps } from './types';
 import styles from './index.module.css'
-import { useCart } from '../hooks';
+import { useCartContext } from '../../../context/CartContext';
 import { Divider, IconButton, Snackbar, SnackbarOrigin } from '@mui/material';
 import Add from '@mui/icons-material/Add';
 import ProductCounter from '../Counter';
 import WishlistButton from '../AddToWishlistButton';
 
-export const ProductCard: React.FC<CardProps> = ({ id, name, description, price, stock, image, category }) => {
-  const { addToCart } = useCart();
+export const ProductCard: React.FC<CardProps> = ({ id, name, description, price, stock, image }) => {
+  const { addToCart, removeFromCart, productsInBag } = useCartContext();
   const [quantity, setQuantity] = React.useState<number>(1);
   const [state, setState] = React.useState<{
     open: boolean;
@@ -45,9 +45,6 @@ export const ProductCard: React.FC<CardProps> = ({ id, name, description, price,
     handleClick({ vertical: 'top', horizontal: 'right' });
   }
 
-  const handleQuantityChange = (newQuantity: number) => {
-    setQuantity(newQuantity);
-  };
 
   const handleWishlistChange = (added: boolean) => {
     console.log(added);
@@ -77,7 +74,10 @@ export const ProductCard: React.FC<CardProps> = ({ id, name, description, price,
           </CardContent>
           {stock > 0 ? (
             <>
-            <ProductCounter onQuantityChange={handleQuantityChange}/>
+            <ProductCounter 
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
             <div className='flex mr-auto ml-5'>
               <WishlistButton onAddToWishlist={handleWishlistChange} />
             </div>

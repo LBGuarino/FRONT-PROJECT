@@ -54,9 +54,11 @@ export default function ProfileForm() {
             } else {
                 throw new Error(`Unexpected response status: ${response.status}`);
             }
+        /* eslint-disable */
         } catch (error: any) {
             const errorMessage = error.response?.data?.message || error.message || "An error occurred";
             showAlert("error", `Failed to register user: ${errorMessage}`);
+        /* eslint-enable */
         } finally {
             setIsSubmitting(false);
         }

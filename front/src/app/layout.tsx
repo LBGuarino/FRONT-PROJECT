@@ -2,6 +2,7 @@ import NavBar from "@/components/NavBar";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import { UserProvider } from '@auth0/nextjs-auth0/client'
+import { CartProvider } from "context/CartContext";
 
 export default function RootLayout({
   children,
@@ -19,8 +20,10 @@ export default function RootLayout({
       </head>
       <UserProvider>
           <body>
+            <CartProvider>
               <NavBar />
-              <main>{children}</main>
+              {children}
+            </CartProvider>
               <Footer />
           </body>
       </UserProvider>

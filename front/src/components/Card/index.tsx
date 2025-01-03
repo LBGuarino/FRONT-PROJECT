@@ -5,7 +5,7 @@ import { CardProps } from "./types";
 import ProductCounter from "../Counter";
 import { Button, IconButton, Tooltip } from "@mui/material";
 import Add from "@mui/icons-material/Add";
-import { useCart } from "../hooks";
+import { useCartContext } from "../../../context/CartContext";
 import WishlistButton from "../AddToWishlistButton";
 
 export const Card: React.FC<CardProps> = ({
@@ -15,9 +15,9 @@ export const Card: React.FC<CardProps> = ({
   price,
   stock,
   image,
-  category,
 }) => {
-  const { addToCart } = useCart();
+  console.log('montando card');
+  const { addToCart } = useCartContext();
   const [quantity, setQuantity] = React.useState<number>(1);
   const [isBouncing, setIsBouncing] = useState<boolean>(false);
 
@@ -26,13 +26,10 @@ export const Card: React.FC<CardProps> = ({
   };
 
   const handleAddToCart = (productId: number) => {
+    if (isBouncing) return;
     addToCart(productId, quantity);
     setIsBouncing(true);
     setTimeout(() => setIsBouncing(false), 500);
-  };
-
-  const handleQuantityChange = (newQuantity: number) => {
-    setQuantity(newQuantity);
   };
 
   return (
@@ -49,7 +46,10 @@ export const Card: React.FC<CardProps> = ({
         <p className={styles.description}>{description}</p>
         {stock > 0 ? (
           <>
-            <ProductCounter onQuantityChange={handleQuantityChange} />
+            <ProductCounter 
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
             <WishlistButton onAddToWishlist={handleWishlistChange} />
             <div className="flex ml-auto mr-4 gap-4">
               <Tooltip title="Add to Bag" aria-label="Add to Bag">

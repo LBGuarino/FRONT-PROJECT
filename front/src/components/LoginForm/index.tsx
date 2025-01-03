@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client';
 import axios from 'axios';
 import { initialLoginValues, loginConfig } from '@/config/loginConfig';
@@ -6,17 +7,14 @@ import {  useState } from 'react';
 import styles from './index.module.css';
 import Link from 'next/link';
 import { Alert, AlertTitle, CircularProgress, Stack } from '@mui/material';
-import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
     const [form, setForm] = useState(initialLoginValues);
     const [state, setState] = useState({
-        error: null as string | null,
+        error: null,
         loading: false,
         showErrorAlert: false
     });
-
-    const router = useRouter();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -29,8 +27,9 @@ export default function LoginForm() {
             setState((prev) => ({ ...prev, loading: true, error: null }));
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, form
             );
-
-        } catch (error: any) {
+            console.log(response.data);
+        
+        } catch (error:any) {
             setState((prev) => ({
                 ...prev,
                 error: error.response?.data?.message || 'Something went wrong',

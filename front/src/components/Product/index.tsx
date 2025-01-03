@@ -4,11 +4,11 @@ import { CardProps } from '../ProductPageCard/types';
 import ProductCounter from '../Counter';
 import { IconButton, Snackbar, SnackbarOrigin } from '@mui/material';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { useCart } from '../hooks';
+import { useCartContext } from '../../../context/CartContext';
 import { useState } from 'react';
 
-export const AutoGrid: React.FC<CardProps> = ({ id, name, description, price, stock, image, category }) => {
-  const { addToCart } = useCart();
+export const AutoGrid: React.FC<CardProps> = ({ id, name, price, image, category }) => {
+  const { addToCart } = useCartContext();
   const [quantity, setQuantity] = useState<number>(1);
   const [state, setState] = useState<{
     open: boolean;
@@ -30,10 +30,6 @@ export const AutoGrid: React.FC<CardProps> = ({ id, name, description, price, st
 
   const handleClose = () => {
     setState({ ...state, open: false });
-  };
-
-  const handleQuantityChange = (newQuantity: number) => {
-    setQuantity(newQuantity);
   };
 
   const handleAddToCart = (productId: number) => {
@@ -74,7 +70,10 @@ export const AutoGrid: React.FC<CardProps> = ({ id, name, description, price, st
             <p className="mb-4">Category: {category.name || 'Uncategorized'}</p>
           </div>
           <div className="flex justify-center gap-4 mt-4">
-            <ProductCounter onQuantityChange={handleQuantityChange}/>
+            <ProductCounter 
+            quantity={quantity}
+            setQuantity={setQuantity}
+            />
             <IconButton
               size="small"
               sx={{

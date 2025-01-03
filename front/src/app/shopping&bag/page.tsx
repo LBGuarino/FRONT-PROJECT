@@ -1,6 +1,5 @@
 import OrderForm from "@/components/OrderForm";
 import ShoppingBagProductCard from "@/components/ShoppingBagProductCard";
-import { Box, Button } from "@mui/material";
 
 export default function ShoppingBagPage() {
     return (

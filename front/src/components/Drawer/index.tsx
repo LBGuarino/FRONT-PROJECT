@@ -10,6 +10,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { mainCategories } from './utils';
 import { ListItemText } from '@mui/material';
 import styles from './index.module.css'
+import Link from 'next/link';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,7 @@ export default function TemporaryDrawer() {
   const DrawerList = (
     <Box sx={{ width: 400, marginTop: '8em' }} role="presentation">
       <div style={{marginBottom: '1em',marginTop:'-8.5em', display: 'flex', justifyContent: 'center'}} className={styles.logoContainer}>
-        <a href="/"><img src="/images/logo.svg" className={styles.logo}/></a>
+        <Link href="/"><img src="/images/logo.svg" className={styles.logo}/></Link>
       </div>
       <List>
         {mainCategories.map((category) => (

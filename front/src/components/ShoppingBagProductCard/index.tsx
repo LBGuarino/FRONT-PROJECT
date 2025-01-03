@@ -1,17 +1,46 @@
-'use client';
+"use client";
+
+import { useEffect, useState } from "react";
 import { Box, Card, CardActionArea, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { IProduct } from "@/interfaces/IProduct";
 import getProduct from "@/helpers/getProduct";
-import { useCart } from "../hooks";
+import { useCartContext } from "../../../context/CartContext";
 
-export default function ShoppingBagProductCard() {
-  const { productsInBag, removeFromCart } = useCart();
+interface ProductProps {
+  product: IProduct;
+  quantity: number;
+}
+
+export default function ShoppingBagPage() {
+  const { productsInBag, removeFromCart } = useCartContext();
   const [removeProduct, setRemoveProduct] = useState<number | null>(null);
-  const [detailedProducts, setDetailedProducts] = useState<any[]>([]);
+  const [detailedProducts, setDetailedProducts] = useState<ProductProps[]>([]);
 
+  // Cargar detalles de cada producto cuando cambie el carrito
+  useEffect(() => {
+    const fetchDetailedProducts = async () => {
+      const fetched = await Promise.all(
+        productsInBag.map(async ({ id, quantity }) => {
+          const product = await getProduct(id);
+          if (product) {
+            return { product, quantity };
+          }
+          return null;
+        })
+      );
+
+      // Filtra los nulos (en caso de errores en el fetch)
+      const validProducts = fetched.filter((item) => item !== null) as ProductProps[];
+      setDetailedProducts(validProducts);
+    };
+
+    fetchDetailedProducts();
+  }, [productsInBag]);
+
+  // Quitar un producto con animación
   const handleRemoveProduct = (productId: number) => {
     setRemoveProduct(productId);
     setTimeout(() => {
@@ -19,26 +48,6 @@ export default function ShoppingBagProductCard() {
       setRemoveProduct(null);
     }, 300);
   };
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const fetchedProducts = await Promise.all(
-        productsInBag.map(async (product) => {
-          try {
-            const detailedProduct = await getProduct(product.id);
-            return { ...detailedProduct, quantity: product.quantity };
-          } catch (error) {
-            console.error(`Error fetching product ${product.id}:`, error);
-            return null;
-          }
-        })
-      );
-
-      setDetailedProducts(fetchedProducts.filter((p) => p !== null));
-    };
-
-    fetchProducts();
-  }, [productsInBag]);
 
   return (
     <>
@@ -51,7 +60,7 @@ export default function ShoppingBagProductCard() {
         </Box>
       ) : (
         <AnimatePresence>
-          {detailedProducts.map((product) => (
+          {detailedProducts.map(({ product, quantity }) => (
             removeProduct !== product.id && (
               <motion.div
                 key={product.id}
@@ -66,7 +75,7 @@ export default function ShoppingBagProductCard() {
                     <CardMedia
                       component="img"
                       src={product.image}
-                      alt="product image"
+                      alt={`Product ${product.name}`}
                       style={{ height: 140 }}
                     />
                     <CardContent>
@@ -83,16 +92,12 @@ export default function ShoppingBagProductCard() {
                         }).format(product.price)}
                       </Typography>
                       <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                        Quantity: {product.quantity}
+                        Quantity: {quantity}
                       </Typography>
                     </CardContent>
                   </CardActionArea>
                   <Box display="flex" justifyContent="flex-end" p={1}>
-                    <IconButton
-                      aria-label="delete"
-                      size="small"
-                      onClick={() => handleRemoveProduct(product.id)}
-                    >
+                    <IconButton aria-label="delete" size="small" onClick={() => handleRemoveProduct(product.id)}>
                       <CloseIcon fontSize="small" />
                     </IconButton>
                   </Box>

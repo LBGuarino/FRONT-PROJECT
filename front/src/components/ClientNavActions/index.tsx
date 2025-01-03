@@ -2,6 +2,7 @@
 import { Alert, Skeleton } from '@mui/material';
 import AccountMenu from '../AccountMenu';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import Link from 'next/link';
 
 
 export default function ClientNavActions() {
@@ -9,6 +10,7 @@ export default function ClientNavActions() {
 
     return (
         <>
+            {}
             {error && <Alert severity="error"> Error: {error.message} </Alert>}
             {isLoading && <>
                 <Skeleton variant='circular'>
@@ -23,9 +25,9 @@ export default function ClientNavActions() {
                     </div> : null}
                 {!user && !isLoading && <>
                     <div className="flex flex-row">
-                        <a href="/api/auth/login" className="inline-flex font-normal gap-2 uppercase mb-1 text-yellow-950 transition duration-150 ease-in-out hover:text-white">
+                        <Link href="/api/auth/login" className="inline-flex font-normal gap-2 uppercase mb-1 text-yellow-950 transition duration-150 ease-in-out hover:text-white">
                             <img src="/icons/user.svg" width={16} height={16} /> Login
-                        </a>
+                        </Link>
                     </div>
                 </>}
             </div>

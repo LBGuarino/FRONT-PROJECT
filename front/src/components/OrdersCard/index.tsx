@@ -4,7 +4,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import getToken from "@/helpers/getToken";
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { IOrder } from "@/interfaces/IOrder";
 import { OrderProductsCard } from "../OrderProductsCard";
 

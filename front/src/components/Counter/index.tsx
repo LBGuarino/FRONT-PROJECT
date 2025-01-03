@@ -1,24 +1,20 @@
-import { useState } from "react";
 import styles from "./index.module.css";
 
 interface ProductCounterProps {
-  onQuantityChange?: (quantity: number) => void;
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ProductCounter: React.FC<ProductCounterProps> = ({ onQuantityChange }) => {
-  const [count, setCount] = useState<number>(1);
+const ProductCounter: React.FC<ProductCounterProps> = ({ quantity, setQuantity }) => {
 
   const handleIncrement = () => {
-    const newCount = count + 1;
-    setCount(newCount);
-    onQuantityChange?.(newCount);
+    setQuantity(quantity + 1);
   };
 
   const handleDecrement = () => {
-    const newCount = count > 1 ? count - 1 : 1;
-    setCount(newCount);
-    onQuantityChange?.(newCount);
-  };
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }  };
 
   return (
     <div className={styles.productCounter}>
@@ -29,7 +25,7 @@ const ProductCounter: React.FC<ProductCounterProps> = ({ onQuantityChange }) => 
       >
         -
       </button>
-      <span className={styles.counterValue}>{count}</span>
+      <span className={styles.counterValue}>{quantity}</span>
       <button
         className={styles.counterButton}
         onClick={handleIncrement}
