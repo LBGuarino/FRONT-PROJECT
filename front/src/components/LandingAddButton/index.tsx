@@ -1,6 +1,6 @@
 'use client';
 import { Button, Snackbar, SnackbarOrigin } from "@mui/material";
-import { useCart } from "../hooks";
+import { useCartContext } from "context/CartContext";
 import { useState } from "react";
 
 interface LandingAddButtonProps {
@@ -9,7 +9,7 @@ interface LandingAddButtonProps {
 }
 
 export default function LandingAddButton({ productId, quantity }: LandingAddButtonProps) {
-    const { addToCart } = useCart();
+    const { addToCart } = useCartContext();
     const [state, setState] = useState<{
         open: boolean;
         vertical: SnackbarOrigin['vertical'];

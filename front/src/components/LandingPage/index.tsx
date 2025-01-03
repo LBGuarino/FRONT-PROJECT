@@ -35,7 +35,7 @@ export default function LandingPage() {
             autoplay={{ delay: 5000 }}
             className={styles.swiperContainer}>
         
-            {products.map(({id, name, description, price, stock, image, category }, index: number) => (
+            {products.map(({id, name, description, price, stock, image, category }) => (
                 <SwiperSlide key={id}>
                     <Card
                     id={id}

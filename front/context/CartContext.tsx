@@ -8,6 +8,8 @@ import React, {
   ReactNode,
 } from "react";
 
+import { useUser } from "@auth0/nextjs-auth0/client";
+
 //
 // 1. Declaramos los tipos:
 //
@@ -60,7 +62,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const { user } = useUser();
+
   const addToCart = (productId: number, quantity: number) => {
+    if (!user) window.location.href = '/api/auth/login';
     console.log(">>> addToCart llamado con:", productId, quantity);
     if (!validateProductId(productId)) {
       alert(`Invalid product id: ${productId}`);

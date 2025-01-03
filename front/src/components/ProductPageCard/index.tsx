@@ -15,7 +15,7 @@ import ProductCounter from '../Counter';
 import WishlistButton from '../AddToWishlistButton';
 
 export const ProductCard: React.FC<CardProps> = ({ id, name, description, price, stock, image }) => {
-  const { addToCart, removeFromCart, productsInBag } = useCartContext();
+  const { addToCart } = useCartContext();
   const [quantity, setQuantity] = React.useState<number>(1);
   const [state, setState] = React.useState<{
     open: boolean;
