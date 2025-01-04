@@ -1,133 +1,114 @@
-.mainCategory {
-    background-color: transparent;
-    border: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    position: relative;
-}
-
-.mainCategory:hover {
-    background-color:#d8c8bb;
-}
-
-.mainCategoryText {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1.1em;
-    text-decoration: none; 
-    position: relative; 
-    display: inline-block; 
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.mainCategoryText:hover {
-    color: #f1ecec;
-}
-
-.mainCategoryText::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0; 
-    width: 0%; 
-    height: 2px; 
-    background-color: #f1ecec;
-    transition: width 0.3s ease-in-out; 
-}
-
-.mainCategoryText:hover::after {
-    width: 100%;
-}
-
-.subCategoryText {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 15px;
-    text-decoration: none;
-    position: relative; 
-    display: inline-block; 
-    cursor: pointer; 
-}
-
-.subCategoryText::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0; 
-    width: 0%; 
-    height: 2px; 
-    background-color: #5a5a5a;
-    transition: width 0.3s ease-in-out; 
-}
-
-.subCategoryText:hover::after {
-    width: 100%; 
-}
-
-
-.subCategoryButton {
-    background-color: transparent;
-    border: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    height: fit-content;
-}
-
-.subCategoryButton:hover {
-    background-color:#d8c8bb;
-    text-decoration: underline;
-}
-
+/* Texto general del Drawer */
 .text {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", Arial, sans-serif;
     font-size: 1.1em;
-    text-decoration: none;
     text-align: center;
     margin-bottom: 2.5rem;
-}
-
-.text::after {
-    content: '';
+    position: relative;
+  }
+  
+  /* Estilos para categoría principal */
+  .mainCategory {
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    padding: 0.5em 0;
+  }
+  
+  .mainCategory:hover {
+    background-color: #d8c8bb;
+  }
+  
+  .mainCategoryText {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 1.1em;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .mainCategoryText:hover {
+    color: #f1ecec;
+  }
+  
+  .mainCategoryText::after {
+    content: "";
     position: absolute;
     left: 0;
-    bottom: 0; 
-    width: 0%; 
-    height: 2px; 
+    bottom: 0;
+    width: 0%;
+    height: 2px;
     background-color: #f1ecec;
-    transition: width 0.3s ease-in-out; 
-}
-
-.logoutText {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .mainCategoryText:hover::after {
+    width: 100%;
+  }
+  
+  /* Estilos para subcategorías */
+  .subCategoryButton {
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    height: fit-content;
+  }
+  
+  .subCategoryButton:hover {
+    background-color: #d8c8bb;
+  }
+  
+  .subCategoryText {
+    font-family: "Trebuchet MS", Arial, sans-serif;
     font-size: 15px;
     text-decoration: none;
-    cursor: pointer; 
-    padding: 1em;
-}
-
-.logoutButton {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .subCategoryText::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #5a5a5a;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .subCategoryText:hover::after {
+    width: 100%;
+  }
+  
+  .logoutButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0%;
     background-color: transparent;
-    border: none;
+    border-radius: 0%;
     cursor: pointer;
-}
-
-.logoutText::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0; 
-    width: 0%; 
-    height: 2px; 
-    background-color: #5a5a5a;
-    transition: width 0.3s ease-in-out; 
-}
-
-.logoutText:hover::after {
-    width: 100%; 
-}
-
-
-
+    margin: 1em;
+    transition: background-color 0.2s ease;
+  }
+  
+  .logoutText {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    margin-right: 0.5em;
+    transition: color 0.3s ease;
+  }
+  
+  .logoutText:hover {
+    color: #c4ad99;
+  }
+  

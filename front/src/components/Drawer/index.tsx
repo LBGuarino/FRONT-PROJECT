@@ -25,30 +25,49 @@ export default function TemporaryDrawer() {
   };
 
   const handleMouseLeave = () => {
-    setHoveredCategory(null); 
+    setHoveredCategory(null);
   };
 
   const DrawerList = (
-    <Box sx={{ width: 400, marginTop: '8em' }} role="presentation">
-      <div style={{marginBottom: '1em',marginTop:'-8.5em', display: 'flex', justifyContent: 'center'}} className={styles.logoContainer}>
-        <Link href="/"><img src="/images/logo.svg" className={styles.logo}/></Link>
+    <Box
+      sx={{
+        width: { xs: '80vw', sm: 400 },
+        marginTop: { xs: '5em', sm: '8em' },
+      }}
+      role="presentation"
+    >
+      <div
+        style={{
+          marginBottom: '1em',
+          marginTop: '-8.5em',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+        className={styles.logoContainer}
+      >
+        <Link href="/">
+          <img src="/images/logo.svg" className={styles.logo} alt="Brand Logo" />
+        </Link>
       </div>
       <List>
         {mainCategories.map((category) => (
           <div
             key={category.id}
             onMouseEnter={() => handleMouseEnter(category.id)}
-            onMouseLeave={handleMouseLeave} 
+            onMouseLeave={handleMouseLeave}
             style={{ marginBottom: '10px', position: 'relative' }}
           >
-
-            <ListItem 
-            className={styles.mainCategory}
-            sx={{
-              display: 'flex',
-              padding:'0.2em'
-            }}>
-              <ListItemButton component='a' href={category.path}>
+            <ListItem
+              sx={{
+                display: 'flex',
+                padding: '0.2em',
+              }}
+            >
+              <ListItemButton
+                component={Link}
+                href={category.path}
+                className={styles.mainCategory}
+              >
                 <ListItemText
                   primary={category.name}
                   primaryTypographyProps={{
@@ -61,31 +80,31 @@ export default function TemporaryDrawer() {
                 />
               </ListItemButton>
             </ListItem>
-
-
             <div
               style={{
-                maxHeight: hoveredCategory === category.id ? '300px' : '0px', 
+                maxHeight: hoveredCategory === category.id ? '300px' : '0px',
                 overflow: 'hidden',
-                transition: 'max-height 0.7s ease-in-out', 
-                backgroundColor: 'transparent', 
+                transition: 'max-height 0.7s ease-in-out',
+                backgroundColor: 'transparent',
                 zIndex: 1,
                 width: '100%',
-                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
               }}
             >
               <List>
                 {category.subCategories.map((sub) => (
-                  <ListItem key={sub.id} disablePadding>
+                  <ListItem key={`${category.id}-${sub.id}`} disablePadding>
                     <ListItemButton
                       className={styles.subCategoryButton}
-                      component="a"
-                      href={`/products/&${category.name.toLowerCase()}/${sub.name
+                      component={Link}
+                      href={`${category.path}/${sub.name
                         .toLowerCase()
                         .replace(/ /g, '-')}`}
                     >
-                      <ListItemText primary={sub.name}
-                      classes={{ primary: styles.subCategoryText }}/>
+                      <ListItemText
+                        primary={sub.name}
+                        classes={{ primary: styles.subCategoryText }}
+                      />
                     </ListItemButton>
                   </ListItem>
                 ))}
@@ -95,21 +114,20 @@ export default function TemporaryDrawer() {
         ))}
       </List>
       <Divider />
-    </Box>
-  );
+    </Box>);
 
   return (
-    <div style={{display: 'flex', marginRight: '10em', marginLeft: '-5em', backgroundColor: 'inherit'}}>
-      <Button style={{backgroundColor: 'transparent', border: 'none', borderRadius: '40px', color: 'white',marginLeft: '1em'}} onClick={toggleDrawer(true)}>
-        <img src="/icons/menuicon.svg" width={30} height={21}/>
+    <div style={{ display: 'flex', marginRight: '10em', marginLeft: '-5em', backgroundColor: 'inherit' }}>
+      <Button style={{ backgroundColor: 'transparent', border: 'none', borderRadius: '40px', color: 'white', marginLeft: '1em' }} onClick={toggleDrawer(true)}>
+        <img src="/icons/menuicon.svg" width={30} height={21} />
       </Button>
       <Drawer open={open} onClose={toggleDrawer(false)}
-      sx={{
-        '& .MuiDrawer-paper': {
-          backgroundColor: '#f1f3f8',
-        },
-      }}
-    >
+        sx={{
+          '& .MuiDrawer-paper': {
+            backgroundColor: '#f1f3f8',
+          },
+        }}
+      >
         {DrawerList}
       </Drawer>
     </div>

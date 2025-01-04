@@ -65,7 +65,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const { user } = useUser();
 
   const addToCart = (productId: number, quantity: number) => {
-    if (!user) window.location.href = '/api/auth/login';
+    if (!user) {
+      window.location.href = '/api/auth/login'
+    } else {
     console.log(">>> addToCart llamado con:", productId, quantity);
     if (!validateProductId(productId)) {
       alert(`Invalid product id: ${productId}`);
@@ -88,7 +90,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       syncLocalStorage(updatedCart);
       return updatedCart;
     });
-  };
+  }};
 
   const removeFromCart = (productId: number) => {
     if (!validateProductId(productId)) {
