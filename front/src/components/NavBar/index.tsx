@@ -3,7 +3,7 @@ import styles from './index.module.css';
 import { NavConfig, NavItem } from '@/config/navConfig';
 import Image from 'next/image';
 import ShoppingBag from '../Shopping Bag';
-import CustomSearchBar from '../SearchBar';
+import CustomSearchBar from '../SearchBar/index';
 import TemporaryDrawer from '../Drawer';
 import ClientNavActions from '../ClientNavActions';
 
