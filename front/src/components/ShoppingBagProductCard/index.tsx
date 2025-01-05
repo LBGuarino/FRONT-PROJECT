@@ -19,7 +19,6 @@ export default function ShoppingBagPage() {
   const [removeProduct, setRemoveProduct] = useState<number | null>(null);
   const [detailedProducts, setDetailedProducts] = useState<ProductProps[]>([]);
 
-  // Cargar detalles de cada producto cuando cambie el carrito
   useEffect(() => {
     const fetchDetailedProducts = async () => {
       const fetched = await Promise.all(
@@ -32,7 +31,6 @@ export default function ShoppingBagPage() {
         })
       );
 
-      // Filtra los nulos (en caso de errores en el fetch)
       const validProducts = fetched.filter((item) => item !== null) as ProductProps[];
       setDetailedProducts(validProducts);
     };
@@ -40,7 +38,6 @@ export default function ShoppingBagPage() {
     fetchDetailedProducts();
   }, [productsInBag]);
 
-  // Quitar un producto con animación
   const handleRemoveProduct = (productId: number) => {
     setRemoveProduct(productId);
     setTimeout(() => {
@@ -54,7 +51,7 @@ export default function ShoppingBagPage() {
       {productsInBag.length === 0 ? (
         <Box textAlign="center" p={4}>
           <p>Your bag is empty</p>
-          <Link href="/products" className="text-blue-500 p-4 hover:underline">
+          <Link href="/products/Candles" className="text-blue-500 p-4 hover:underline">
             Go to products
           </Link>
         </Box>

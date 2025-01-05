@@ -10,44 +10,54 @@ import {
   ListItemText,
   CircularProgress,
   ListItemButton,
+  ListItemAvatar,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
-import { IProduct } from "@/interfaces/IProduct"; // Ajusta la ruta a donde tengas IProduct
+import { IProduct } from "@/interfaces/IProduct";
+import { useRouter } from "next/navigation";
 
-/**
- * Componente de SearchBar con debounce y renderizado de resultados.
- */
 export default function CustomSearchBar() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState<IProduct[]>([]);
   const [isSearching, setIsSearching] = React.useState(false);
   const [showResults, setShowResults] = React.useState(false);
   const debounceRef = React.useRef<NodeJS.Timeout | null>(null);
+  const searchBarRef = React.useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
 
-  /**
-   * Se ejecuta cada vez que cambia el `searchTerm`.
-   * Usamos un debounce de ~400ms para no saturar el backend.
-   */
   React.useEffect(() => {
-    // Limpiar el timeout anterior si existe
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchBarRef.current &&
+        !searchBarRef.current.contains(event.target as Node)
+      ) {
+        setShowResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  React.useEffect(() => {
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
     }
 
-    // Si el usuario borró el campo, limpiamos resultados y salimos
     if (!searchTerm) {
       setSearchResults([]);
       setShowResults(false);
       return;
     }
 
-    // Definir un nuevo timeout
     debounceRef.current = setTimeout(async () => {
       await handleSearch(searchTerm);
     }, 400);
 
-    // Cleanup al desmontar o cambiar el searchTerm
     return () => {
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
@@ -55,15 +65,10 @@ export default function CustomSearchBar() {
     };
   }, [searchTerm]);
 
-  /**
-   * Lógica para hacer la petición a tu backend (Express + TypeORM).
-   * Ajusta la ruta si tu endpoint difiere. 
-   */
   const handleSearch = async (query: string) => {
     try {
       setIsSearching(true);
-      // Ejemplo: GET /api/products?search=query
-      const res = await axios.get<IProduct[]>("/api/products", {
+      const res = await axios.get<IProduct[]>("http://localhost:3001/products", {
         params: { search: query },
       });
       setSearchResults(res.data);
@@ -75,25 +80,19 @@ export default function CustomSearchBar() {
     }
   };
 
-  /**
-   * Actualiza el término de búsqueda con cada tecla pulsada.
-   */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
-  /**
-   * Lógica opcional para cuando el usuario selecciona un producto de la lista.
-   */
   const handleSelectItem = (product: IProduct) => {
-    console.log("Seleccionaste:", product);
-    // Por ejemplo, podrías rellenar el input con el nombre del producto
-    setSearchTerm(product.name);
     setShowResults(false);
+    router.push(`/products/Candles/${product.id}`);
   };
 
   return (
-    <Box sx={{ position: "relative", width: "fit-content" }}>
+    <Box sx={{ position: "relative", width: "500px" }}
+    ref={searchBarRef}
+    >
       <TextField
         variant="standard"
         placeholder="SEARCH"
@@ -128,44 +127,79 @@ export default function CustomSearchBar() {
         }}
       />
 
-      {/* Indicador de carga */}
       {isSearching && (
         <Box sx={{ position: "absolute", top: 0, right: -30 }}>
           <CircularProgress size={20} />
         </Box>
       )}
 
-      {/* Lista de resultados */}
       {showResults && searchResults.length > 0 && (
         <List
           sx={{
             position: "absolute",
-            top: 35,
+            top: "100%",
             left: 0,
-            width: "200px",
-            maxHeight: "200px",
+            width: "100%",
+            maxHeight: "300px",
             overflowY: "auto",
             backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            zIndex: 10,
+            border: "1px solid #ddd",
+            borderRadius: "8px",
+            boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)",
+            zIndex: 1000,
           }}
         >
           {searchResults.map((product) => (
             <ListItem
-              key={product.id}>
+              key={product.id}
+              disablePadding
+              sx={{
+                "&:hover": {
+                  backgroundColor: "#f9f9f9",
+                },
+              }}
+            >
               <ListItemButton
-                onClick={() => handleSelectItem(product)}>
-              <ListItemText
-                primary={product.name}
-                secondary={`$${product.price}`}
-              />
+                onClick={() => handleSelectItem(product)}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "10px 15px",
+                }}
+              >
+                <ListItemAvatar>
+                  <Box
+                    component="img"
+                    src={product.image}
+                    alt={product.name}
+                    sx={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: "4px",
+                      objectFit: "cover",
+                      marginRight: "10px",
+                    }}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={product.name}
+                  secondary={`$${product.price}`}
+                  primaryTypographyProps={{
+                    fontSize: "16px",
+                    fontWeight: "500",
+                    color: "#333",
+                  }}
+                  secondaryTypographyProps={{
+                    fontSize: "14px",
+                    color: "#666",
+                  }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       )}
 
-      {/* Mensaje "no se encontraron resultados" */}
       {showResults &&
         !isSearching &&
         searchTerm &&

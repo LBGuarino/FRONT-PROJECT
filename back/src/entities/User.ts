@@ -27,14 +27,19 @@ export class User {
     email: string;
 
     @Column({
-    nullable: false
+    nullable: true
     })
     address: string;
 
     @Column({
-    nullable: false  
+    nullable: true  
     })
     phone: string;
+
+    @Column({
+        nullable: false
+    })
+    isRegistered: boolean;
 
     @Column({
         type: "enum",

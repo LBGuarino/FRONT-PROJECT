@@ -5,11 +5,6 @@ import { IProduct } from "@/interfaces/IProduct";
 import { Breadcrumbs, Divider } from "@mui/material";
 import Link from "next/link";
 
-// interface PageParams {
-//   params: {
-//     slug: string;
-//   };
-// }
 
 export default async function ProductPage({ params }: any): Promise<JSX.Element> {
   const { slug } = params;
@@ -32,7 +27,7 @@ export default async function ProductPage({ params }: any): Promise<JSX.Element>
       <Breadcrumbs aria-label="breadcrumb" sx={{ margin: "1rem" }}>
         <Link href="/">Home</Link>
         <Link href="/products">Products</Link>
-        <Link href={`/products/${product.category.name.toLowerCase()}`}>
+        <Link href={`/products/Candles/${product.category.name.toLowerCase().replace(/ /g, '-')}`}>
           {product.category.name}
         </Link>
       </Breadcrumbs>

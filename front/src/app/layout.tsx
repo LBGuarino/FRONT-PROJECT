@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { CartProvider } from "context/CartContext";
+import AuthRedirectWrapper from "@/components/AuthRedirectWrapper";
 
 export default function RootLayout({
   children,
@@ -19,13 +20,13 @@ export default function RootLayout({
         <link rel="icon" href="Favicon.ico" />
       </head>
       <UserProvider>
-          <body>
-            <CartProvider>
-              <NavBar />
-              {children}
-            </CartProvider>
-              <Footer />
-          </body>
+        <body>
+          <CartProvider>
+            <NavBar />
+            {children}
+          </CartProvider>
+          <Footer />
+        </body>
       </UserProvider>
 
     </html>

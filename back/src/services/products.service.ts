@@ -10,8 +10,12 @@ export const checkProductExists = async (itemId: number): Promise<boolean> => {
   return !!item;
 };
 
-export const getProductsService = async (): Promise<Product[]> => {
-  return await ProductRepository.find();
+export const getProductsService = async (search?: string): Promise<Product[]> => {
+  if (search) {
+    return await searchProductsService(search);
+  } else {
+    return await ProductRepository.find();
+  }
 };
 
 export const searchProductsService = async (search: string): Promise<Product[]> => {

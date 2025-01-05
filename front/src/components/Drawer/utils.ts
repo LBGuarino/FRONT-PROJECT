@@ -24,7 +24,7 @@ export interface SubCategory {
     {
       id: 2,
       name: 'Scented Oils',
-      path: '/products/Scented&Oils',
+      path: '/products/Scented-Oils',
       subCategories: [
         { id: 1, name: 'Natural Scents' },
         { id: 2, name: 'Classics' },
