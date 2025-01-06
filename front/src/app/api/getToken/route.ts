@@ -1,7 +1,11 @@
 /* eslint-disable */
-import { NextResponse } from "next/server";
+interface AuthToken {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
+}
 
-export async function POST() {
+export default async function POST(): Promise<AuthToken> {
   try {
     const response = await fetch("https://dev-4uohkqf0fwyqpje6.us.auth0.com/oauth/token", {
       method: "POST",
@@ -21,9 +25,9 @@ export async function POST() {
     }
 
     const data = await response.json();
-    return NextResponse.json(data);
+    return data as AuthToken;
   } catch (error: any) {
     console.error("Error fetching token:", error.message);
-    return NextResponse.json({ error: "Failed to fetch token" }, { status: 500 });
+    throw new Error("Failed to fetch token");
   }
 }
