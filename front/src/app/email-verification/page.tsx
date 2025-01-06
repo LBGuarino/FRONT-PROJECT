@@ -11,7 +11,7 @@ export default async function EmailVerification() {
         </p>
 
         <Link href={"/login"} className="text-blue-500 p-4 hover:underline">
-          You didn't receive an email?
+          You did not receive an email?
         </Link>
       </div>
       <div className="flex justify-center mt-8">

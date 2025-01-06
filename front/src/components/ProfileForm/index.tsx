@@ -86,9 +86,14 @@ export default function ProfileForm() {
       } else {
         throw new Error(`Unexpected response status: ${response.status}`);
       }
-    } catch (error: any) {
-      const errorMessage =
-        error.response?.data?.message || error.message || "An error occurred";
+    } catch (error: unknown) {
+      let errorMessage: string = "An error occurred";
+
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.response?.data?.message || error.message;
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
       showAlert("error", `Failed to update profile: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);

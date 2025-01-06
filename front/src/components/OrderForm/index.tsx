@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import {
   Box,
   Card,
-  CardContent,
   Typography,
   Divider,
   FormControl,
@@ -14,12 +13,10 @@ import {
   Radio,
   TextField,
   Button,
-  IconButton,
   Snackbar,
   Alert,
 } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import CloseIcon from "@mui/icons-material/Close";
 import { useCartContext } from "../../../context/CartContext";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import getToken from "@/helpers/getToken";
@@ -27,7 +24,6 @@ import axios from "axios";
 import PaymentBox from "../PaymentBox";
 import { IProduct } from "@/interfaces/IProduct";
 import getProduct from "@/helpers/getProduct";
-import Link from "next/link";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 interface ProductProps {
@@ -143,14 +139,18 @@ export default function OrderForm() {
       } else {
         throw new Error(`Unexpected response status: ${response.status}`);
       }
-    } catch (error: any) {
-      console.error("Error when trying to submit the order:", error);
+    } catch (error: unknown) {
+      let errorMessage: string = "An error occured"
+
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.response?.data?.message || error.message;
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
       setNotification({
         open: true,
         severity: "error",
-        message:
-          error.response?.data?.message ||
-          "The order could not be submitted. Please try again.",    
+        message: errorMessage,
       });
     } finally {
       setIsSubmitting(false);

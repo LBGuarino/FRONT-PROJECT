@@ -12,8 +12,10 @@ export default function AuthLayout({
             <img src='/images/authLayout.png' alt="logo" className='w-full h-full object-cover' />
           </div>
 
-          <div className='flex flex-col items-center p-16 align-center justify-center w-1/2 h-full gap-3'>
-            {children}
+          <div className='flex flex-col w-1/2 h-full'>
+            <div className='flex-1 overflow-auto p-8'>
+              {children}
+            </div>
           </div>
         </div>
   );

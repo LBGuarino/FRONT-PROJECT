@@ -66,11 +66,10 @@ export default function AccountMenu() {
             style={{ marginBottom: "10px", position: "relative" }}
           >
             <ListItem className={styles.mainCategory}>
-              <ListItemButton>
+              <ListItemButton className={styles.mainCategoryButton}>
                 <ListItemText
-                  primary={property.name}
+                  primary={<span className={styles.mainCategoryText}>{property.name}</span>}
                   primaryTypographyProps={{ textAlign: "left" }}
-                  classes={{ primary: styles.mainCategoryText }}
                 />
               </ListItemButton>
             </ListItem>
@@ -95,9 +94,8 @@ export default function AccountMenu() {
                       component={Link}
                     >
                       <ListItemText
-                        primary={sub.name}
+                        primary={<span className={styles.subCategoryText}>{sub.name}</span>}
                         sx={{ textAlign: "right" }}
-                        classes={{ primary: styles.subCategoryText }}
                       />
                     </ListItemButton>
                   </ListItem>

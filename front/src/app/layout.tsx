@@ -3,7 +3,6 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { CartProvider } from "context/CartContext";
-import AuthRedirectWrapper from "@/components/AuthRedirectWrapper";
 
 export default function RootLayout({
   children,

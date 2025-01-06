@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,8 +10,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import { mainCategories } from './utils';
 import { ListItemText } from '@mui/material';
-import styles from './index.module.css'
+import styles from './index.module.css';
 import Link from 'next/link';
+import Image from 'next/image';
+import classNames from 'classnames'; // Para manejar clases condicionales
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
@@ -36,17 +39,15 @@ export default function TemporaryDrawer() {
       }}
       role="presentation"
     >
-      <div
-        style={{
-          marginBottom: '1em',
-          marginTop: '-8.5em',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-        className={styles.logoContainer}
-      >
+      <div className={styles.logoContainer}>
         <Link href="/">
-          <img src="/images/logo.svg" className={styles.logo} alt="Brand Logo" />
+          <Image
+            src="/images/logo.svg"
+            className={styles.logo}
+            width={220}
+            height={30}
+            alt="Brand Logo"
+          />
         </Link>
       </div>
       <List>
@@ -55,41 +56,24 @@ export default function TemporaryDrawer() {
             key={category.id}
             onMouseEnter={() => handleMouseEnter(category.id)}
             onMouseLeave={handleMouseLeave}
-            style={{ marginBottom: '10px', position: 'relative' }}
+            className={styles.categoryContainer}
           >
-            <ListItem
-              sx={{
-                display: 'flex',
-                padding: '0.2em',
-              }}
-            >
+            <ListItem sx={{backgroundColor:"transparent"}} className={styles.listItem}>
               <ListItemButton
                 component={Link}
                 href={category.path}
-                className={styles.mainCategory}
+                className={styles.mainCategoryButton}
               >
                 <ListItemText
-                  primary={category.name}
-                  primaryTypographyProps={{
-                    textAlign: 'right',
-                  }}
-                  sx={{
-                    textAlign: 'right',
-                  }}
-                  classes={{ primary: styles.mainCategoryText }}
+                  primary={<span className={styles.mainCategoryText}>{category.name}</span>}
+                  primaryTypographyProps={{ textAlign: 'right', fontFamily: 'inherit', fontSize:"22px", fontWeight:"400" }}
                 />
               </ListItemButton>
             </ListItem>
             <div
-              style={{
-                maxHeight: hoveredCategory === category.id ? '300px' : '0px',
-                overflow: 'hidden',
-                transition: 'max-height 0.7s ease-in-out',
-                backgroundColor: 'transparent',
-                zIndex: 1,
-                width: '100%',
-                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-              }}
+              className={classNames(styles.subCategoryContainer, {
+                [styles.subCategoryContainerActive]: hoveredCategory === category.id,
+              })}
             >
               <List>
                 {category.subCategories.map((sub) => (
@@ -97,13 +81,11 @@ export default function TemporaryDrawer() {
                     <ListItemButton
                       className={styles.subCategoryButton}
                       component={Link}
-                      href={`${category.path}/${sub.name
-                        .toLowerCase()
-                        .replace(/ /g, '-')}`}
+                      href={`${category.path}/${sub.name.toLowerCase().replace(/ /g, '-')}`}
                     >
                       <ListItemText
-                        primary={sub.name}
-                        classes={{ primary: styles.subCategoryText }}
+                        primary={<span className={styles.subCategoryText}>{sub.name}</span>}
+                        primaryTypographyProps={{ fontFamily: 'inherit', fontSize:"16px", fontWeight:"200" }}
                       />
                     </ListItemButton>
                   </ListItem>
@@ -114,14 +96,17 @@ export default function TemporaryDrawer() {
         ))}
       </List>
       <Divider />
-    </Box>);
+    </Box>
+  );
 
   return (
-    <div style={{ display: 'flex', marginRight: '10em', marginLeft: '-5em', backgroundColor: 'inherit' }}>
-      <Button style={{ backgroundColor: 'transparent', border: 'none', borderRadius: '40px', color: 'white', marginLeft: '1em' }} onClick={toggleDrawer(true)}>
-        <img src="/icons/menuicon.svg" width={30} height={21} />
+    <div className={styles.drawerContainer}>
+      <Button className={styles.menuButton} onClick={toggleDrawer(true)}>
+        <Image src="/icons/menuicon.svg" width={30} height={21} alt="Menu Icon" />
       </Button>
-      <Drawer open={open} onClose={toggleDrawer(false)}
+      <Drawer
+        open={open}
+        onClose={toggleDrawer(false)}
         sx={{
           '& .MuiDrawer-paper': {
             backgroundColor: '#f1f3f8',
@@ -133,6 +118,3 @@ export default function TemporaryDrawer() {
     </div>
   );
 }
-
-
-

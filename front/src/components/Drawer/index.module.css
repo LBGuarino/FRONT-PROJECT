@@ -1,88 +1,146 @@
 .logoContainer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1em;
-  }
-  
-  .logo {
-    max-width: 340px;
-    height: auto;
-  }
-  
-  .mainCategory {
-    background-color: transparent;
-    border: none;
-    transition: background-color 0.2s ease;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .mainCategory:hover {
-    background-color: #d8c8bb;
-  }
-  
-  .mainCategoryText {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1.3em;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .mainCategoryText:hover {
-    color: #f1ecec;
-  }
-  
-  .mainCategoryText::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    background-color: #f1ecec;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  .mainCategoryText:hover::after {
-    width: 100%;
-  }
-  
-  .subCategoryButton {
-    background-color: transparent;
-    border: none;
-    transition: background-color 0.2s ease;
-    cursor: pointer;
-  }
-  
-  .subCategoryButton:hover {
-    background-color: #d8c8bb;
-  }
-  
-  .subCategoryText {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1.1em;
-    text-decoration: none;
-    font-weight: lighter;
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .subCategoryText::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    background-color: #5a5a5a;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  .subCategoryText:hover::after {
-    width: 100%;
-  }
-  
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+  margin-top: -8.5em; 
+}
+
+.logo {
+  max-width: 340px;
+  height: auto;
+}
+
+.mainCategory {
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  width: 100%; 
+}
+
+.mainCategory:hover {
+  background-color: #d8c8bb;
+}
+
+.mainCategoryButton{
+  background-color: transparent;
+  border: none;
+}
+
+.mainCategoryText {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  text-align: right; 
+}
+
+.mainCategoryText:hover {
+  color: #f1ecec;
+}
+
+.mainCategoryText::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #f1ecec;
+  transition: width 0.3s ease-in-out;
+}
+
+.mainCategoryText:hover::after {
+  width: 100%;
+}
+
+.subCategoryButton {
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  width: 100%;
+  padding-left: 1.5em; 
+}
+
+.subCategoryButton:hover {
+  background-color: #d8c8bb;
+}
+
+.subCategoryText {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.1em;
+  text-decoration: none;
+  font-weight: lighter;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: right; 
+}
+
+.subCategoryText::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #5a5a5a;
+  transition: width 0.3s ease-in-out;
+}
+
+.subCategoryText:hover::after {
+  width: 100%;
+}
+
+.drawerContainer {
+  display: flex;
+  margin-right: 10em;
+  margin-left: -5em;
+  background-color: inherit;
+}
+
+.menuButton {
+  background-color: transparent;
+  border: none;
+  border-radius: 40px;
+  color: white;
+  margin-left: 1em;
+  padding: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menuButton:hover {
+  background-color: rgba(0, 0, 0, 0.1); 
+}
+
+.categoryContainer {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.listItem {
+  display: flex;
+  padding: 0.2em;
+  transition: background-color 0.2s ease;
+}
+
+.listItem:hover{
+  background-color: #d8c8bb;
+}
+
+.subCategoryContainer {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.7s ease-in-out;
+  background-color: transparent;
+  z-index: 1;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subCategoryContainerActive {
+  max-height: 300px; 
+}

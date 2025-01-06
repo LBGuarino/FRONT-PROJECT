@@ -49,6 +49,11 @@
   .mainCategoryText:hover::after {
     width: 100%;
   }
+
+  .mainCategoryButton {
+    background-color: transparent;
+    border: none;
+  }
   
   /* Estilos para subcategorías */
   .subCategoryButton {
