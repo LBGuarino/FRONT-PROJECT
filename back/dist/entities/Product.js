@@ -41,12 +41,12 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "image", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ name: "categoryid" }),
     __metadata("design:type", Number)
 ], Product.prototype, "categoryId", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Category_1.Category, (category) => category.products),
-    (0, typeorm_1.JoinColumn)({ name: "categoryId" }),
+    (0, typeorm_1.JoinColumn)({ name: "categoryid" }),
     __metadata("design:type", Category_1.Category)
 ], Product.prototype, "category", void 0);
 __decorate([

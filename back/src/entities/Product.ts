@@ -29,11 +29,11 @@ export class Product {
   @Column()
   image: string;
 
-  @Column()
+  @Column({name: "categoryid"})
   categoryId: number;
 
   @ManyToOne(() => Category, (category) => category.products)
-  @JoinColumn({ name: "categoryId" })
+  @JoinColumn({ name: "categoryid" })
   category: Category;
 
   @OneToMany(() => OrderProduct, (orderProduct) => orderProduct.product)

@@ -43,7 +43,7 @@ __decorate([
 ], Order.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => User_1.User, (user) => user.orders),
-    (0, typeorm_1.JoinColumn)({ name: "userId" }),
+    (0, typeorm_1.JoinColumn)({ name: "userid" }),
     __metadata("design:type", User_1.User)
 ], Order.prototype, "user", void 0);
 __decorate([
