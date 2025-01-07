@@ -19,6 +19,7 @@ exports.AppDataSource = new typeorm_1.DataSource(process.env.DATABASE_URL
             rejectUnauthorized: false, // Required for many managed databases like Render
         },
         entities: [User_1.User, Credential_1.Credential, Order_1.Order, Product_1.Product, Category_1.Category, OrderProduct_1.OrderProduct],
+        migrations: ["dist/migrations/**/*.js"], // Path to compiled migrations
     }
     : {
         type: "postgres", // Local development configuration
@@ -31,5 +32,5 @@ exports.AppDataSource = new typeorm_1.DataSource(process.env.DATABASE_URL
         logging: false, // Enable logging for debugging
         entities: [User_1.User, Credential_1.Credential, Order_1.Order, Product_1.Product, Category_1.Category, OrderProduct_1.OrderProduct],
         subscribers: [],
-        migrations: [],
+        migrations: ["src/migrations/**/*.ts"], // Path to TypeScript migrations
     });

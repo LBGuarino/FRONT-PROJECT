@@ -10,7 +10,7 @@ import { OrderProduct } from "../entities/OrderProduct";
 export const AppDataSource = new DataSource(
   process.env.DATABASE_URL
     ? {
-  type: "postgres",
+        type: "postgres",
         url: process.env.DATABASE_URL, // Use DATABASE_URL in production
         synchronize: false, // Disable synchronize in production
         logging: false,
@@ -18,19 +18,19 @@ export const AppDataSource = new DataSource(
           rejectUnauthorized: false, // Required for many managed databases like Render
         },
         entities: [User, Credential, Order, Product, Category, OrderProduct],
+        migrations: ["dist/migrations/**/*.js"], // Path to compiled migrations
       }
     : {
-  type: "postgres", // Local development configuration
-  host: "localhost",
-  port: 5432,
-  username: "postgres",
-  password: "Pollo1525",
-  database: "proyecto_m4_front",
+        type: "postgres", // Local development configuration
+        host: "localhost",
+        port: 5432,
+        username: "postgres",
+        password: "Pollo1525",
+        database: "proyecto_m4_front",
         synchronize: true, // Enable synchronize for development
         logging: false, // Enable logging for debugging
-  entities: [User, Credential, Order, Product, Category, OrderProduct],
-  subscribers: [],
-  migrations: [],
+        entities: [User, Credential, Order, Product, Category, OrderProduct],
+        subscribers: [],
+        migrations: ["src/migrations/**/*.ts"], // Path to TypeScript migrations
       }
 );
-

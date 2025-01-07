@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "migrate": "typeorm migration:run -d dist/config/dataSource.js",
+    "start": "node dist/index.js",
+    "deploy": "npm install && npm run build && npm run migrate"
   },
   "keywords": [],
   "author": "",
