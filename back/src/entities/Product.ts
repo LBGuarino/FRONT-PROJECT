@@ -2,12 +2,10 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Order } from "./Order";
 import { Category } from "./Category";
 import { OrderProduct } from "./OrderProduct";
 

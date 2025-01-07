@@ -2,14 +2,11 @@ import {
   Column,
   Entity,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { User } from "./User";
-import { Product } from "./Product";
 import { OrderProduct } from "./OrderProduct";
 
 export enum OrderStatus {
