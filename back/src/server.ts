@@ -16,6 +16,11 @@ app.options('*', cors());
 
 app.use(router);
 
+app.use((req, res, next) => {
+  console.log('Auth method:', req.headers.authorization);
+  next();
+});
+
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.status(err.statusCode || 500).send({
     statusCode: err.statusCode || 500,
