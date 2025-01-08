@@ -13,6 +13,7 @@ export async function POST() {
         client_secret: process.env.AUTH0_CLIENT_SECRET,
         audience: "https://dev-oijzj7i4fib6t6mn.us.auth0.com/api/v2/",
         grant_type: "client_credentials",
+        scope: "read:orders create:orders update:orders delete:orders"
       }),
     });
 
