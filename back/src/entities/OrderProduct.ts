@@ -14,11 +14,11 @@ import {
     id: number;
   
     @ManyToOne(() => Order, (order) => order.orderProducts)
-    @JoinColumn({ name: "orderId" })
+    @JoinColumn({ name: "orderid" })
     order: Order;
   
     @ManyToOne(() => Product, (product) => product.orderProducts)
-    @JoinColumn({ name: "productId" })
+    @JoinColumn({ name: "productid" })
     product: Product;
   
     @Column()
