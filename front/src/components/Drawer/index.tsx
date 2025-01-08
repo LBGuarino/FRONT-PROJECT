@@ -66,7 +66,7 @@ export default function TemporaryDrawer() {
               >
                 <ListItemText
                   primary={<span className={styles.mainCategoryText}>{category.name}</span>}
-                  primaryTypographyProps={{ textAlign: 'right', fontFamily: 'inherit', fontSize:"22px", fontWeight:"400" }}
+                  primaryTypographyProps={{ textAlign: 'right', fontFamily: 'inherit', fontSize:"18px", fontWeight:"400" }}
                 />
               </ListItemButton>
             </ListItem>
