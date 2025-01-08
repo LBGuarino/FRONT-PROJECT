@@ -58,7 +58,7 @@ export default function TemporaryDrawer() {
             onMouseLeave={handleMouseLeave}
             className={styles.categoryContainer}
           >
-            <ListItem sx={{backgroundColor:"transparent"}} className={styles.listItem}>
+            <ListItem sx={{backgroundColor:"transparent", height:{ sm: "auto", xs: "auto", md: "auto", lg: "auto", xl: "auto" }}} className={styles.listItem}>
               <ListItemButton
                 component={Link}
                 href={category.path}
