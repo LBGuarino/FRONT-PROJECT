@@ -105,7 +105,7 @@ export default function OrderForm() {
 
     try {
       const token = await getToken();
-      console.log(token);
+      console.log("token", token);
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/orders`,
         {
