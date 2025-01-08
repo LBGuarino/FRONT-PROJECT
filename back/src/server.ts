@@ -5,7 +5,11 @@ import morgan from "morgan";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://www.thescentedshop.blog',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Authorization', 'Content-Type']
+}));
 app.use(express.json());
 app.use(morgan("dev"));
 

@@ -5,4 +5,3 @@ export const checkJwt = auth({
     issuerBaseURL: `${process.env.AUTH0_ISSUER_BASE_URL}`,
 });
 
-console.log(process.env.AUTH0_ISSUER_BASE_URL)
