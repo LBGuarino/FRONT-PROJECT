@@ -8,10 +8,11 @@ const app = express();
 app.use(cors({
   origin: 'https://www.thescentedshop.blog',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Authorization', 'Content-Type']
+  allowedHeaders: ['Authorization', 'Content-Type', 'auth0sub']
 }));
 app.use(express.json());
 app.use(morgan("dev"));
+app.options('*', cors());
 
 app.use(router);
 
