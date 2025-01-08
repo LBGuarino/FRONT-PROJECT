@@ -10,11 +10,11 @@ import { OrderProductRepository } from "../repositories/orderproduct.repository"
 export const createOrderService = async (
   createOrderDto: CreateOrderDto
 ): Promise<Order> => {
-  const { userId, products } = createOrderDto;
-  if (!userId || !products || products.length === 0)
+  const { userid, products } = createOrderDto;
+  if (!userid || !products || products.length === 0)
     throw new Error("Missing required fields: userId or products");
 
-  const user = await UserRepository.findOneBy({ id: userId });
+  const user = await UserRepository.findOneBy({ id: userid });
   if (!user) throw new Error("User not found");
 
   const newOrder = OrderRepository.create({

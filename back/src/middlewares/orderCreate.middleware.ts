@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { ClientError } from "../utils/errors";
-import { checkUserExists } from "../services/user.service";
 import { checkProductExists } from "../services/products.service";
 
 const validateOrderFields = (

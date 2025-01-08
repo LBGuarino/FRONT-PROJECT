@@ -25,7 +25,7 @@ if (!user) {
   throw new Error('User not found')
 }
 
-    const newOrder = await createOrderService({ userId: user.id, products });
+    const newOrder = await createOrderService({ userid: user.id, products });
     res.send(newOrder);
   }
 );
