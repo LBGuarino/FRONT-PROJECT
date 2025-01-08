@@ -13,7 +13,6 @@ export default function LoadingPage() {
     const handleUserFlow = async () => {
       if (user)
       try {
-        console.log("Verificando usuario en el backend...");
         const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/check-or-create`, {
           auth0Sub: user.sub,
           email: user.email,
@@ -23,10 +22,8 @@ export default function LoadingPage() {
         const { isRegistered } = response.data;
 
         if (isRegistered) {
-          console.log("Usuario registrado, redirigiendo a /");
           router.push("/");
         } else {
-          console.log("Usuario no registrado, redirigiendo a /profile");
           router.push("/profile");
         }
       } catch (error) {
