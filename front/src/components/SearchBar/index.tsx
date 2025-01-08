@@ -68,7 +68,7 @@ export default function CustomSearchBar() {
   const handleSearch = async (query: string) => {
     try {
       setIsSearching(true);
-      const res = await axios.get<IProduct[]>("http://localhost:3001/products", {
+      const res = await axios.get<IProduct[]>(`${process.env.NEXT_PUBLIC_API_URL}/products`, {
         params: { search: query },
       });
       setSearchResults(res.data);

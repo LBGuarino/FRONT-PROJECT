@@ -34,7 +34,7 @@ export async function middleware(req: NextRequest) {
       const { user } = session;
       const { sub, email, name } = user;
 
-      const response = await fetch("http://localhost:3001/users/check-or-create", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/check-or-create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

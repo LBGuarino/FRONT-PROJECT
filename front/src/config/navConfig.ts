@@ -7,13 +7,13 @@ export interface NavItem {
 export const NavConfig: NavItem[] = [
     {
         text: 'contact us',
-        path: 'contact',
+        path: '/contact',
         icon: '/icons/contact.svg'
             
     },
     {
         text: 'Wish List',
-        path: 'wish-list',
+        path: '/wish-list',
         icon: '/icons/wishlist.svg'
     }
 ]   

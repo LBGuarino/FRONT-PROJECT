@@ -24,7 +24,7 @@ export default function ProfileForm() {
     const fetchUserDetails = async () => {
       if (user) {
         try {
-          const response = await axios.post("http://localhost:3001/users/check-or-create", {
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/check-or-create`, {
             email: user.email,
             password: user.sub,
           });
@@ -74,7 +74,7 @@ export default function ProfileForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post("http://localhost:3001/users/register", {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, {
         auth0Sub: user?.sub,
         password: user?.sub,
         ...form,

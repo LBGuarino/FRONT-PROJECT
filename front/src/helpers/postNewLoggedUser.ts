@@ -10,7 +10,7 @@ const postNewLoggedUser = async (user: IRegister | null) => {
             throw new Error("Failed to fetch token");
         }
 
-        const response = await axios.post("http://localhost:3001/users/register", user );
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register`, user );
 
         if (!response) {
             throw new Error("Failed to post new user");

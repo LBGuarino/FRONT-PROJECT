@@ -14,7 +14,7 @@ export default function LoadingPage() {
       if (user)
       try {
         console.log("Verificando usuario en el backend...");
-        const response = await axios.post("http://localhost:3001/users/check-or-create", {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/check-or-create`, {
           auth0Sub: user.sub,
           email: user.email,
           name: user.name,
@@ -31,7 +31,7 @@ export default function LoadingPage() {
         }
       } catch (error) {
         console.error("Error al manejar el flujo del usuario:", error);
-        router.push("/error"); // Página de error si algo falla
+        router.push("/error");
       }
     };
 

@@ -13,7 +13,7 @@ export default function AuthRedirectWrapper({ children }: { children: React.Reac
     const checkOrCreateUser = async () => {
       if (user) {
         try {
-          const response = await axios.post("http://localhost:3001/users/check-or-create", {
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/check-or-create`, {
             auth0Sub: user.sub,
             email: user.email,
             name: user.name,

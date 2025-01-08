@@ -24,7 +24,7 @@ export default function OrderGrid() {
   const getOrders = async () => {
     try {
       const token = await getToken();
-      const response = await axios.get("http://localhost:3001/users/orders", {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users/orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
           auth0Sub: authSub,

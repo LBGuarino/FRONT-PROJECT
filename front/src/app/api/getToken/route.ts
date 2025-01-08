@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   try {
-    const response = await fetch("https://dev-4uohkqf0fwyqpje6.us.auth0.com/oauth/token", {
+    const response = await fetch("https://dev-oijzj7i4fib6t6mn.us.auth0.com/oauth/token", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export async function POST() {
       body: JSON.stringify({
         client_id: process.env.AUTH0_CLIENT_ID,
         client_secret: process.env.AUTH0_CLIENT_SECRET,
-        audience: "https://dev-4uohkqf0fwyqpje6.us.auth0.com/api/v2/",
+        audience: "https://dev-oijzj7i4fib6t6mn.us.auth0.com/api/v2/",
         grant_type: "client_credentials",
       }),
     });
