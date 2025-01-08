@@ -56,6 +56,7 @@ __decorate([
 ], User.prototype, "phone", void 0);
 __decorate([
     (0, typeorm_1.Column)({
+        name: "isregistered",
         nullable: false
     }),
     __metadata("design:type", Boolean)

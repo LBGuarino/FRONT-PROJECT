@@ -37,6 +37,7 @@ export class User {
     phone: string;
 
     @Column({
+        name: "isregistered",
         nullable: false
     })
     isRegistered: boolean;
