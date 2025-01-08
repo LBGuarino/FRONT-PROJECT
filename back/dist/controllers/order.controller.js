@@ -25,6 +25,6 @@ exports.createOrder = (0, catchedController_1.catchedController)((req, res) => _
     if (!user) {
         throw new Error('User not found');
     }
-    const newOrder = yield (0, order_service_1.createOrderService)({ userId: user.id, products });
+    const newOrder = yield (0, order_service_1.createOrderService)({ userid: user.id, products });
     res.send(newOrder);
 }));

@@ -12,7 +12,7 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ unique : true, nullable: true })
+    @Column({ name: "auth0sub", unique : true, nullable: true })
     auth0Sub: string;
 
     @Column({
@@ -49,7 +49,7 @@ export class User {
     role: Role;
 
     @OneToOne(() => Credential, {nullable: true})
-    @JoinColumn()
+    @JoinColumn({ name: "credentialid" })
     credential: Credential;
 
     @OneToMany(() => Order, order => order.user)

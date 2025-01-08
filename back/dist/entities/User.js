@@ -26,7 +26,7 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true, nullable: true }),
+    (0, typeorm_1.Column)({ name: "auth0sub", unique: true, nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "auth0Sub", void 0);
 __decorate([
@@ -70,7 +70,7 @@ __decorate([
 ], User.prototype, "role", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => Credential_1.Credential, { nullable: true }),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.JoinColumn)({ name: "credentialid" }),
     __metadata("design:type", Credential_1.Credential)
 ], User.prototype, "credential", void 0);
 __decorate([

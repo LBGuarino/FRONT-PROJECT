@@ -62,7 +62,7 @@ const loginUserService = (loginUserDto) => __awaiter(void 0, void 0, void 0, fun
     if (!user)
         throw new Error("User not found");
     if (yield (0, credential_service_1.checkPasswordService)(loginUserDto.password, user.credential.password)) {
-        const token = jsonwebtoken_1.default.sign({ userId: user.id }, envs_1.JWT_SECRET);
+        const token = jsonwebtoken_1.default.sign({ userid: user.id }, envs_1.JWT_SECRET);
         return {
             user,
             token,

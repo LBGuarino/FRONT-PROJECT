@@ -16,10 +16,10 @@ const user_repository_1 = require("../repositories/user.repository");
 const Order_1 = require("../entities/Order");
 const orderproduct_repository_1 = require("../repositories/orderproduct.repository");
 const createOrderService = (createOrderDto) => __awaiter(void 0, void 0, void 0, function* () {
-    const { userId, products } = createOrderDto;
-    if (!userId || !products || products.length === 0)
+    const { userid, products } = createOrderDto;
+    if (!userid || !products || products.length === 0)
         throw new Error("Missing required fields: userId or products");
-    const user = yield user_repository_1.UserRepository.findOneBy({ id: userId });
+    const user = yield user_repository_1.UserRepository.findOneBy({ id: userid });
     if (!user)
         throw new Error("User not found");
     const newOrder = order_repository_1.OrderRepository.create({
