@@ -11,6 +11,7 @@ interface OrderRequest {
 export const createOrder = catchedController(
   async (req: Request<{}, {}, OrderRequest>, res: Response) => {
     const { products, auth0Sub } = req.body;
+    console.log(req.body)
     console.log(auth0Sub);
 
     if (!auth0Sub || !products || products.length === 0) {
