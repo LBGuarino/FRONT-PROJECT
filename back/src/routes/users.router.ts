@@ -16,6 +16,7 @@ usersRouter.post("/check-or-create", checkOrCreateUser);
 
 usersRouter.get("/orders", checkJwt, async (req: Request, res: Response) => {
   const authSub = req.auth?.payload?.sub;
+  console.log(authSub);
   if (!authSub) {
     return res.status(401).json({ message: "Unauthorized" });
   }
