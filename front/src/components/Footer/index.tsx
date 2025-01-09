@@ -1,82 +1,70 @@
-import { Box } from "@mui/material"
-import styles from "./index.module.css"
+import { Box } from "@mui/material";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div>
-
-      <Box component="footer" className={styles.footer}>
-
-        <div className={styles.footerLinks}>
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/about-us"}>
-            <p>Terms of Service</p>
+    <Box
+      component="footer"
+      className="bg-footerBg text-footerText font-light py-8 px-4"
+    >
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
+          <Link href="/about-us" className="hover:text-black hover:underline">
+            Terms of Service
           </Link>
-
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/privacy-policy"}>
-            <p>Privacy Policy</p>
+          <Link
+            href="/privacy-policy"
+            className="hover:text-footerHover hover:underline"
+          >
+            Privacy Policy
           </Link>
- 
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Contact Us</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Contact Us
           </Link>
-
         </div>
 
-        <div className={styles.footerLinks}>
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>FAQ</p>
+        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            FAQ
           </Link>
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Returns</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Returns
           </Link>
-
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Shipping</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Shipping
           </Link>
-
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Security</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Security
           </Link>
- 
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Refund Policy</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Refund Policy
           </Link>
-
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Sitemap</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Sitemap
           </Link>
-
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>About Us</p>
+          <Link href="/about-us" className="hover:text-footerHover hover:underline">
+            About Us
           </Link>
-
         </div>
 
-        <div className={styles.footerLinks}>
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Facebook</p>
+        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Facebook
           </Link>
- 
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Instagram</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Instagram
           </Link>
- 
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>X</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            X
           </Link>
- 
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>YouTube</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            YouTube
           </Link>
-
-          <Link style={{textDecoration: "none", color: "#5f4b52"}} href={"/contact-us"}>
-            <p>Pinterest</p>
+          <Link href="/contact-us" className="hover:text-footerHover hover:underline">
+            Pinterest
           </Link>
- 
         </div>
-      </Box>
-
-    </div>
+      </div>
+    </Box>
   );
-} 
+}

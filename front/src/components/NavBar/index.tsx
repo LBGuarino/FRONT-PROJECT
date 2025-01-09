@@ -32,8 +32,8 @@ export default function NavBar(){
                 {NavConfig.map((el: NavItem) => {
                     return (
                         <li className={styles.navigationPill} key={el.path}>
-                            <Link href={el.path} className={styles.title}>
-                                <span>
+                            <Link href={el.path}>
+                                <span className={styles.title}>
                                     <Image
                                         className={styles.icon}
                                         src={el.icon}

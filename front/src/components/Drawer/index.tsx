@@ -61,7 +61,7 @@ export default function TemporaryDrawer() {
             <ListItem sx={{
               '&:hover': {
                 boxShadow: 'none',
-                backgroundColor: 'transparent', 
+                backgroundColor: '#d8c8bb', 
               }}} className={styles.listItem}>
               <ListItemButton
                 component={Link}
@@ -69,7 +69,6 @@ export default function TemporaryDrawer() {
               >
                 <ListItemText
                   primary={<span className={styles.mainCategoryText}>{category.name}</span>}
-                  primaryTypographyProps={{ textAlign: 'right', fontFamily: 'inherit', fontSize:"18px", fontWeight:"400" }}
                 />
               </ListItemButton>
             </ListItem>
