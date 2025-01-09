@@ -22,12 +22,12 @@ __decorate([
 ], OrderProduct.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Order_1.Order, (order) => order.orderProducts),
-    (0, typeorm_1.JoinColumn)({ name: "orderId" }),
+    (0, typeorm_1.JoinColumn)({ name: "orderid" }),
     __metadata("design:type", Order_1.Order)
 ], OrderProduct.prototype, "order", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Product_1.Product, (product) => product.orderProducts),
-    (0, typeorm_1.JoinColumn)({ name: "productId" }),
+    (0, typeorm_1.JoinColumn)({ name: "productid" }),
     __metadata("design:type", Product_1.Product)
 ], OrderProduct.prototype, "product", void 0);
 __decorate([

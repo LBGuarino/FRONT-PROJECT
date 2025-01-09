@@ -7,6 +7,7 @@ import { Button, IconButton, Tooltip } from "@mui/material";
 import Add from "@mui/icons-material/Add";
 import { useCartContext } from "../../../context/CartContext";
 import WishlistButton from "../AddToWishlistButton";
+import { motion } from 'framer-motion'
 
 export const Card: React.FC<CardProps> = ({
   id,
@@ -16,7 +17,6 @@ export const Card: React.FC<CardProps> = ({
   stock,
   image,
 }) => {
-  console.log('montando card');
   const { addToCart } = useCartContext();
   const [quantity, setQuantity] = React.useState<number>(1);
   const [isBouncing, setIsBouncing] = useState<boolean>(false);
@@ -33,6 +33,11 @@ export const Card: React.FC<CardProps> = ({
   };
 
   return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
     <div className={styles.card}>
       <img src={image} alt={name} className={styles.image} />
       <div className={styles.cardBody}>
@@ -43,7 +48,7 @@ export const Card: React.FC<CardProps> = ({
             currency: "USD",
           }).format(price)}
         </p>
-        <p className={styles.description}>{description}</p>
+          <p className={styles.description}>{description}</p>
         {stock > 0 ? (
           <>
             <ProductCounter 
@@ -80,5 +85,6 @@ export const Card: React.FC<CardProps> = ({
         )}
       </div>
     </div>
+    </motion.div>
   );
 };

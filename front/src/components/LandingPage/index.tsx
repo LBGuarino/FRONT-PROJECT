@@ -24,31 +24,49 @@ export default function LandingPage() {
       })
     }, []);
 
-  return (
-    <Box component="section" className={styles.container}>    
-        <Swiper 
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={4}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 5000 }}
-            className={styles.swiperContainer}>
-        
-            {products.map(({id, name, description, price, stock, image, category }) => (
-                <SwiperSlide key={id}>
-                    <Card
-                    id={id}
-                    name={name}
-                    description={description}
-                    price={price}
-                    stock={stock}
-                    image={image}
-                    category={category}
-                    />
-                </SwiperSlide>
-            ))}
-        </Swiper>
-    </Box>
-  );
+    return (
+      <Box component="section" className={styles.container}>    
+          <Swiper 
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={20} // Espacio reducido para móviles
+              slidesPerView={1} // Valor por defecto para móviles
+              navigation
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 5000 }}
+              direction="horizontal" // Dirección siempre horizontal
+              breakpoints={{
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+                1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 30,
+                },
+              }}
+              className={styles.swiperContainer}
+              style={{
+                height: 'auto',
+              }}>
+              
+              {products.map(({id, name, description, price, stock, image, category }) => (
+                  <SwiperSlide key={id}>
+                      <Card
+                      id={id}
+                      name={name}
+                      description={description}
+                      price={price}
+                      stock={stock}
+                      image={image}
+                      category={category}
+                      />
+                  </SwiperSlide>
+              ))}
+          </Swiper>
+      </Box>
+    );
 }

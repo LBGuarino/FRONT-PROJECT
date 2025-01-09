@@ -1,5 +1,5 @@
 import NavBar from "@/components/NavBar";
-import "./globals.css";
+import "../app/globals.css";
 import Footer from "@/components/Footer";
 import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { CartProvider } from "context/CartContext";
@@ -19,10 +19,12 @@ export default function RootLayout({
         <link rel="icon" href="Favicon.ico" />
       </head>
       <UserProvider>
-        <body>
+        <body className="flex flex-col min-h-screen bg-gray-100 text-gray-900">
           <CartProvider>
             <NavBar />
-            {children}
+              <main className="flex-grow">
+                {children}
+              </main>
           </CartProvider>
           <Footer />
         </body>

@@ -8,13 +8,11 @@ import {
   CardMedia,
   IconButton,
   Typography,
-  Button,
   Snackbar,
   Alert,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import { IProduct } from "@/interfaces/IProduct";
 import getProduct from "@/helpers/getProduct";
 import { useCartContext } from "../../../context/CartContext";
@@ -102,42 +100,18 @@ export default function ShoppingBagProductCard() {
       </Snackbar>
 
       {productsInBag.length === 0 ? (
-        <Box
-          textAlign="center"
-          p={8}
-        >
-          <Typography variant="h5" sx={{ color: "#333", marginBottom: "1rem" }} fontFamily={"inherit"} fontWeight={300}>
-            Your Shopping Bag is Empty
-          </Typography>
-          <Link href="/products/Candles" passHref>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#C99690",
-                color: "#fff",
-                "&:hover": {
-                  backgroundColor: "#b3847c",
-                },
-                transition: "background-color 0.3s ease",
-                textTransform: "none",
-                paddingX: "2rem",
-              }}
-            >
-              Go to Products
-            </Button>
-          </Link>
-        </Box>
+        null
       ) : (
         <Box
           sx={{
-            padding: "2rem",
+            padding: { xs: "1rem", sm: "2rem" },
             backgroundColor: "transparent",
             minHeight: "100vh",
           }}
         >
           <Typography
             variant="h5"
-            sx={{ color: "#333", fontWeight: "light", fontFamily: "inherit", marginBottom: "1.5rem" }}
+            sx={{ color: "#333", fontWeight: "light", fontFamily: "inherit", marginBottom: "1.5rem", fontSize: { xs: "1.25rem", sm: "1.5rem" } }}
           >
             Your Shopping Bag
           </Typography>
@@ -155,7 +129,8 @@ export default function ShoppingBagProductCard() {
                   <Card
                     sx={{
                       display: "flex",
-                      maxWidth: 600,
+                      flexDirection: { xs: "column", sm: "row" },
+                      maxWidth: { xs: "100%", sm: "600px" },
                       margin: "auto",
                       backgroundColor: "#fdfdfd",
                       borderRadius: "12px",
@@ -169,8 +144,8 @@ export default function ShoppingBagProductCard() {
                       src={product.image}
                       alt={`Product ${product.name}`}
                       sx={{
-                        width: 150,
-                        height: 150,
+                        width: { xs: "100%", sm: "150px" },
+                        height: { xs: "200px", sm: "150px" },
                         objectFit: "cover",
                         backgroundColor: "#F0F0EA",
                       }}

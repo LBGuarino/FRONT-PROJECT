@@ -10,25 +10,10 @@
   height: auto;
 }
 
-.mainCategory {
-  background-color: transparent;
-  border: none;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
-  position: relative;
-  width: 100%; 
-}
-
-.mainCategory:hover {
-  background-color: #d8c8bb;
-}
-
-.mainCategoryButton{
-  background-color: transparent;
-  border: none;
-}
-
 .mainCategoryText {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -70,7 +55,7 @@
 
 .subCategoryText {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 1.1em;
+  font-size: 1em;
   text-decoration: none;
   font-weight: lighter;
   display: inline-block;
@@ -143,4 +128,92 @@
 
 .subCategoryContainerActive {
   max-height: 300px; 
+}
+
+/* Media Queries para Responsividad */
+
+/* Pantallas Medianas y Pequeñas (Tablets y Móviles) */
+@media (max-width: 768px) {
+    .logoContainer {
+        margin-top: -4em; /* Reducir margen superior */
+        margin-bottom: 0.5em; /* Reducir margen inferior */
+    }
+
+    .logo {
+        max-width: 250px; /* Reducir tamaño del logo */
+    }
+
+    .drawerContainer {
+        margin-right: 2em; /* Reducir margen derecho */
+        margin-left: 0; /* Eliminar margen izquierdo */
+        width: 100%; /* Asegurar que el drawer ocupe todo el ancho */
+    }
+
+    .mainCategoryText {
+        text-align: center; /* Centrar texto */
+    }
+
+    .subCategoryButton {
+        padding-left: 1em; /* Reducir padding */
+    }
+
+    .subCategoryText {
+        font-size: 1em; /* Reducir tamaño de fuente */
+        text-align: center; /* Centrar texto */
+    }
+
+    .temporaryDrawer {
+        margin-left: 3rem; /* Ajustar posición del botón del Drawer */
+    }
+
+    /* Ajustes para el Drawer cuando está activo en móviles */
+    .subCategoryContainer {
+        box-shadow: none; /* Eliminar sombra para un diseño más limpio */
+    }
+}
+
+/* Pantallas Pequeñas (Solo Móviles) */
+@media (max-width: 640px) {
+    .logoContainer {
+        margin-top: -2em; /* Reducir aún más margen superior */
+        margin-bottom: 0.3em; /* Reducir aún más margen inferior */
+    }
+
+    .logo {
+        max-width: 200px; /* Reducir aún más tamaño del logo */
+    }
+
+    .drawerContainer {
+        margin-right: 1em; /* Reducir margen derecho */
+    }
+
+    .subCategoryButton {
+        padding-left: 1em; /* Mantener o ajustar según necesidad */
+    }
+
+    .mainCategoryText {
+        font-size: 0.9em; /* Reducir tamaño de fuente */
+    }
+
+    .subCategoryText {
+        font-size: 1em; /* Ajustar tamaño de fuente */
+    }
+
+    .menuButton {
+        padding: 0.4em; /* Reducir padding del botón */
+    }
+
+    .listItem {
+        padding: 0.1em; /* Reducir padding de los elementos de la lista */
+    }
+
+    /* Asegurar que el Drawer ocupe todo el alto en móviles */
+    .drawerContainer {
+        height: 100vh; /* Ocupa toda la altura de la pantalla */
+        flex-direction: column; /* Disposición vertical */
+    }
+
+    .subCategoryContainerActive {
+        max-height: none; /* Permitir que el contenido se muestre completamente */
+    }
 }

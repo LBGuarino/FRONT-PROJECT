@@ -32,7 +32,6 @@ export default function ShoppingBag() {
                 <StyledBadge badgeContent={totalItems} color="secondary">
                 <img src="/icons/shopbag.svg" width={22} height={22} alt='shopping bag'/> 
                 </StyledBadge>
-                Shopping Bag
             </span>
         </Link> : null}
     </>

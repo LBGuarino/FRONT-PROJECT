@@ -1,33 +1,66 @@
 .productCounter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    font-family: "Arial", sans-serif;
-    color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "Arial", sans-serif;
+  color: #333;
+}
+
+.counterButton {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  background-color: transparent;
+  color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.counterButton:hover {
+  background-color: #f8f8f8;
+  border-color: #aaa;
+}
+
+.counterValue {
+  font-size: 18px;
+  font-weight: 600;
+  min-width: 30px;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .productCounter {
+      gap: 10px;
   }
-  
+
   .counterButton {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    background-color: transparent;
-    color: #333;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
+      width: 34px;
+      height: 34px;
+      font-size: 17px;
   }
-  
-  .counterButton:hover {
-    background-color: #f8f8f8;
-    border-color: #aaa;
-  }
-  
+
   .counterValue {
-    font-size: 18px;
-    font-weight: 600;
-    min-width: 30px;
-    text-align: center;
+      font-size: 17px;
+      min-width: 28px;
   }
-  
+}
+
+@media (max-width: 639px) {
+  .productCounter {
+      gap: 8px;
+  }
+
+  .counterButton {
+      width: 32px;
+      height: 32px;
+      font-size: 16px;
+  }
+
+  .counterValue {
+      font-size: 16px;
+      min-width: 28px;
+  }
+}

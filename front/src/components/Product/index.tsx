@@ -55,7 +55,7 @@ export const AutoGrid: React.FC<CardProps> = ({ id, name, price, image, category
             color: 'black',
           }}
         >
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center font-sans">
             <h1 className="text-2xl font-semibold uppercase text-left mb-10 w-fit">
               {name}
             </h1>

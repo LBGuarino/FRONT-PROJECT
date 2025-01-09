@@ -54,7 +54,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (!user) {
       window.location.href = '/api/auth/login'
     } else {
-    console.log(">>> addToCart llamado con:", productId, quantity);
     if (!validateProductId(productId)) {
       alert(`Invalid product id: ${productId}`);
       return;

@@ -56,6 +56,17 @@ export default function NavBar(){
                 </li>
 
             </ul>
+            <ul className={styles.mobileNavigationPillList}>
+                <li className={styles.navigationPill}>
+                    <ShoppingBag />
+                </li>
+
+                <li className={styles.navigationPill}>
+                    <ClientNavActions />
+                </li>
+
+            </ul>
+
         </nav>
     );
 };

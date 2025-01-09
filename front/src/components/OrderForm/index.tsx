@@ -25,6 +25,7 @@ import PaymentBox from "../PaymentBox";
 import { IProduct } from "@/interfaces/IProduct";
 import getProduct from "@/helpers/getProduct";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import Link from "next/link";
 
 interface ProductProps {
   product: IProduct;
@@ -195,20 +196,77 @@ export default function OrderForm() {
       </Snackbar>
 
       {productsInBag.length === 0 ? (
-        <DotLottieReact       
-        src="https://lottie.host/173f3c94-3834-4213-9c65-ea6bcf075493/2mntbggp11.lottie"
-        loop
-        autoplay 
-        className="w-3/4 h-3/4 justify-center mt-10 ml-40"
-        />
+        <Box
+          sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 1,
+          height: "calc(100vh - 100px)",
+          textAlign: "center",
+          px: 2,
+        }}
+        >
+          {/* <Box
+            sx={{
+              flex: { lg: 1 }, // Takes equal space in row layout
+              display: "flex",
+              justifyContent: "center",
+              maxWidth: { xs: "100%", lg: "50%" }, // Restricts max width
+            }}
+          > */}
+          <DotLottieReact
+            src="https://lottie.host/173f3c94-3834-4213-9c65-ea6bcf075493/2mntbggp11.lottie"
+                  loop
+                  autoplay
+                  style={{
+                    maxWidth: "230px",
+                    width: "100%",
+                  }}
+                />
+            {/* </Box> */}
+            {/* <Box
+            sx={{
+              flex: { lg: 1 }, // Takes equal space in row layout
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          > */}
+          <Typography variant="h5" sx={{ color: "#333", marginBottom: "1rem", fontSize: { xs: "1.25rem", sm: "1.5rem" }}} fontFamily={"inherit"} fontWeight={300}>
+            Your Shopping Bag is Empty
+          </Typography>
+          <Link href="/products/Candles" passHref>
+            <Button
+              variant="contained"
+              sx={{
+                marginBottom: "5rem",
+                backgroundColor: "#C99690",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#b3847c",
+                },
+                transition: "background-color 0.3s ease",
+                textTransform: "none",
+                paddingX: "2rem",
+              }}
+            >
+              Go to Products
+            </Button>
+          </Link>
+
+              </Box>
+            // </Box>
       ) : (
         <Card
           sx={{
-            padding: "2rem",
+            padding: { xs: "1rem", sm: "2rem" },
             backgroundColor: "#fdfdfd",
             borderRadius: "12px",
             border: "1px solid #C99690",
-            maxWidth: "800px",
+            maxWidth: { xs: "100%", sm: "800px" },
             margin: "2rem auto",
             boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
           }}
@@ -221,7 +279,7 @@ export default function OrderForm() {
               marginBottom: "1.5rem",
             }}
           >
-            <Typography variant="h6" sx={{ color: "#333" }}>
+            <Typography variant="h6" sx={{ color: "#333", fontSize: "1rem" }}>
               Account: {user?.email}
             </Typography>
             <Button
@@ -234,7 +292,7 @@ export default function OrderForm() {
                   backgroundColor: "#b3847c",
                 },
                 textTransform: "none",
-                padding: "6px 12px",
+                fontSize: "0.9",
               }}
             >
               Log Out

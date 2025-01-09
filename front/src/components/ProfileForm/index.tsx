@@ -102,13 +102,13 @@ export default function ProfileForm() {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p className="text-center font-sans">Loading...</p>}
       {error && <Alert severity="error">Error: {error.message}</Alert>}
       {alert.show && <Alert severity={alert.severity}>{alert.message}</Alert>}
 
       {user && (
         <div
-          className="mx-auto mt-8 p-6 w-full md:w-2/3 lg:w-1/2 rounded shadow"
+          className="mx-auto mt-8 p-6 w-full md:w-2/3 lg:w-1/2 rounded shadow font-sans"
           style={{
             backgroundColor: "#f0efef",
             borderColor: "#C99690",

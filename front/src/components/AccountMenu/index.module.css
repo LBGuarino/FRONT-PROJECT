@@ -1,4 +1,3 @@
-/* Texto general del Drawer */
 .text {
     font-family: "Trebuchet MS", Arial, sans-serif;
     font-size: 1.1em;
@@ -7,7 +6,6 @@
     position: relative;
   }
   
-  /* Estilos para categoría principal */
   .mainCategory {
     background-color: transparent;
     border: none;
@@ -23,7 +21,7 @@
   
   .mainCategoryText {
     font-family: "Trebuchet MS", Arial, sans-serif;
-    font-size: 1.1em;
+    font-size: 1em;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
@@ -55,7 +53,6 @@
     border: none;
   }
   
-  /* Estilos para subcategorías */
   .subCategoryButton {
     background-color: transparent;
     border: none;
@@ -70,7 +67,7 @@
   
   .subCategoryText {
     font-family: "Trebuchet MS", Arial, sans-serif;
-    font-size: 15px;
+    font-size: 0.9em;
     text-decoration: none;
     position: relative;
     display: inline-block;
@@ -105,7 +102,7 @@
   
   .logoutText {
     font-family: "Trebuchet MS", Arial, sans-serif;
-    font-size: 15px;
+    font-size: 0.6em;
     text-decoration: none;
     cursor: pointer;
     position: relative;
