@@ -130,90 +130,85 @@
   max-height: 300px; 
 }
 
-/* Media Queries para Responsividad */
 
-/* Pantallas Medianas y Pequeñas (Tablets y Móviles) */
 @media (max-width: 768px) {
     .logoContainer {
-        margin-top: -4em; /* Reducir margen superior */
-        margin-bottom: 0.5em; /* Reducir margen inferior */
+        margin-top: -4em;
+        margin-bottom: 0.5em;
     }
 
     .logo {
-        max-width: 250px; /* Reducir tamaño del logo */
+        max-width: 250px;
     }
 
     .drawerContainer {
-        margin-right: 2em; /* Reducir margen derecho */
-        margin-left: 0; /* Eliminar margen izquierdo */
-        width: 100%; /* Asegurar que el drawer ocupe todo el ancho */
+        margin-right: 2em;
+        margin-left: 0; 
+        width: 100%; 
     }
 
     .mainCategoryText {
-        text-align: center; /* Centrar texto */
+        text-align: center; 
     }
 
     .subCategoryButton {
-        padding-left: 1em; /* Reducir padding */
+        padding-left: 1em;
     }
 
     .subCategoryText {
-        font-size: 1em; /* Reducir tamaño de fuente */
-        text-align: center; /* Centrar texto */
+        font-size: 1em; 
+        text-align: center; 
     }
 
     .temporaryDrawer {
-        margin-left: 3rem; /* Ajustar posición del botón del Drawer */
+        margin-left: 3rem;
     }
 
-    /* Ajustes para el Drawer cuando está activo en móviles */
     .subCategoryContainer {
-        box-shadow: none; /* Eliminar sombra para un diseño más limpio */
+        box-shadow: none; 
     }
 }
 
-/* Pantallas Pequeñas (Solo Móviles) */
 @media (max-width: 640px) {
     .logoContainer {
-        margin-top: -2em; /* Reducir aún más margen superior */
-        margin-bottom: 0.3em; /* Reducir aún más margen inferior */
+        margin-top: -2em; 
+        margin-bottom: 0.3em;
     }
 
     .logo {
-        max-width: 200px; /* Reducir aún más tamaño del logo */
+        max-width: 200px;
     }
 
     .drawerContainer {
-        margin-right: 1em; /* Reducir margen derecho */
+        margin-right: 1em;
     }
 
     .subCategoryButton {
-        padding-left: 1em; /* Mantener o ajustar según necesidad */
+        padding-left: 1em; 
     }
 
     .mainCategoryText {
-        font-size: 0.9em; /* Reducir tamaño de fuente */
+        font-size: 0.9em; 
     }
 
     .subCategoryText {
-        font-size: 1em; /* Ajustar tamaño de fuente */
+        font-size: 1em; 
     }
 
     .menuButton {
-        padding: 0.4em; /* Reducir padding del botón */
+        padding: 0.4em; 
     }
 
     .listItem {
-        padding: 0.1em; /* Reducir padding de los elementos de la lista */
+        padding: 0.1em; 
     }
 
-    /* Asegurar que el Drawer ocupe todo el alto en móviles */
     .drawerContainer {
-        height: 100vh; /* Ocupa toda la altura de la pantalla */
-        flex-direction: column; /* Disposición vertical */
+        height: 100vh; 
+        flex-direction: column; 
     }
 
     .subCategoryContainerActive {
-        max-height: none; /* Permitir que el contenido se muestre completamente */
+        max-height: none; 
     }
 }

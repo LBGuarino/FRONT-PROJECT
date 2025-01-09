@@ -13,7 +13,7 @@ import { ListItemText } from '@mui/material';
 import styles from './index.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import classNames from 'classnames'; // Para manejar clases condicionales
+import classNames from 'classnames';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
