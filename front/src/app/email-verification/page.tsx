@@ -4,13 +4,13 @@ import Link from "next/link";
 export default async function EmailVerification() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center mt-14 font-light text-xl gap-2">
+      <div className="flex flex-col items-center justify-center mt-14 font-sans font-light text-xl gap-2">
         <h1>E-mail verification needed...</h1>
         <p>We have sent you an email to verify your account. 
             Please check your email and click on the attached link to continue.
         </p>
 
-        <Link href={"/login"} className="text-blue-500 p-4 hover:underline">
+        <Link href={"/login"} className="text-blue-500 p-4 hover:underline font-sans">
           You did not receive an email?
         </Link>
       </div>
